@@ -96,6 +96,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# webm2mp4
+webm2mp4 () {
+  NAME=`echo $1 | cut -d'.' -f1`
+  NEW_NAME=${NAME}.mp4
+  ffmpeg -i $1 -vcodec libx264 -crf 28 -pix_fmt yuv420p ${NEW_NAME}
+  echo "$1 -> ${NEW_NAME}"
+}
+
 alias ta='tmux attach'
 alias ts='tmux new -s'
 alias tx='tmux resize-pane -x'

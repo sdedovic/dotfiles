@@ -1,0 +1,3 @@
+[submodule "vim/.vim/pack/plugins/start/vim-terraform"]
+	path = vim/.vim/pack/plugins/start/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git

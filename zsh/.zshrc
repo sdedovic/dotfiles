@@ -58,11 +58,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux aws colored-man-pages direnv docker extract fzf git httpie systemd sudo terraform themes z)
+plugins=(archlinux aws colored-man-pages direnv docker extract fzf git gradle httpie systemd sudo terraform themes z)
 
 # Personal preferences
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vim
+export VISUAL=vim
 export BROWSER=firefox
 
 source $ZSH/oh-my-zsh.sh
@@ -119,7 +119,10 @@ show_virtual_env() {
 PS1='$(show_virtual_env)'$PS1
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/stevan/.sdkman"
-[[ -s "/home/stevan/.sdkman/bin/sdkman-init.sh" ]] && source "/home/stevan/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
-source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

@@ -1,3 +1,9 @@
 [submodule "vim/.vim/pack/plugins/start/vim-terraform"]
 	path = vim/.vim/pack/plugins/start/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
+[submodule "vim/.vim/pack/plugins/start/fireplace"]
+	path = vim/.vim/pack/plugins/start/fireplace
+	url = https://tpope.io/vim/fireplace.git
+[submodule "vim/.vim/pack/plugins/start/surround"]
+	path = vim/.vim/pack/plugins/start/surround
+	url = https://tpope.io/vim/surround.git

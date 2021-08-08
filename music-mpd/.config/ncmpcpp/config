@@ -11,7 +11,7 @@ main_window_color = white
 
 [media library]
 media_library_primary_tag = album_artist
-#media_library_albums_split_by_date = no
+media_library_albums_split_by_date = no
 
 [current item]
 current_item_inactive_column_prefix = $(250)$r

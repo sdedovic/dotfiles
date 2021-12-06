@@ -7,3 +7,9 @@
 [submodule "vim/.vim/pack/plugins/start/surround"]
 	path = vim/.vim/pack/plugins/start/surround
 	url = https://tpope.io/vim/surround.git
+[submodule "vim/.vim/pack/plugins/start/vim-nix"]
+	path = vim/.vim/pack/plugins/start/vim-nix
+	url = https://github.com/LnL7/vim-nix.git
+[submodule "vim/.vim/pack/plugins/start/vim-packer"]
+	path = vim/.vim/pack/plugins/start/vim-packer
+	url = https://github.com/hashivim/vim-packer.git

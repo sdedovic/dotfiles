@@ -13,3 +13,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-packer"]
 	path = vim/.vim/pack/plugins/start/vim-packer
 	url = https://github.com/hashivim/vim-packer.git
+[submodule "vim/.vim/pack/plugins/start/vim-fzf"]
+	path = vim/.vim/pack/plugins/start/vim-fzf
+	url = git@github.com:junegunn/fzf.vim.git

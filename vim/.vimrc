@@ -13,3 +13,10 @@ set novisualbell        " turn off visual bell
 set nowrap 		" turn off line wrapping
 
 set backspace=indent,eol,start
+
+
+if has('macunix')	" assume things installed via homebrew
+	set rtp+=/usr/local/opt/fzf
+elseif has('unix')	" assume things installed via other
+	set rtp+=~/.fzf " TODO: test if this works on arch?
+endif

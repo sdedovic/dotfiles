@@ -16,3 +16,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-fzf"]
 	path = vim/.vim/pack/plugins/start/vim-fzf
 	url = git@github.com:junegunn/fzf.vim.git
+[submodule "vim/.vim/pack/plugins/start/vim-opencl"]
+	path = vim/.vim/pack/plugins/start/vim-opencl
+	url = git://github.com/petRUShka/vim-opencl.git

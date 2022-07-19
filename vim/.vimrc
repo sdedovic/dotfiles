@@ -12,6 +12,9 @@ set visualbell t_vb=    " turn off error beep/flash
 set novisualbell        " turn off visual bell
 set nowrap 		" turn off line wrapping
 
+set undofile 		" persistent history
+set undodir=~/.vim/undo-dir/
+
 set backspace=indent,eol,start
 
 

@@ -1,5 +1,11 @@
 # dotfiles
 
+```bash
+# Easy mode
+# os can be 'arch' or 'mac'
+./install.sh [os]
+```
+
 ## Installing
 **Dependencies**
 ```bash

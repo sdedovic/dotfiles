@@ -13,6 +13,15 @@ local function augroup(name, commands)
   vim.api.nvim_command('augroup END')
 end
 
+-- fix colors I hope
+vim.o.termguicolors = true
+vim.o.background = 'dark'
+vim.cmd [[
+colorscheme zengarden
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+]]
+
 -- mappings
 vim.g.mapleader = ' '
 noremap('n', '<Leader>e', ':Explore<CR>')

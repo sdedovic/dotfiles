@@ -2,6 +2,10 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Color Scheme?
+   use 'tobi-wan-kenobi/zengarden'
+   use 'jacoborus/tender.vim'
+
 	use { 
 		'nvim-telescope/telescope.nvim', tag = '0.1.0', 
 		requires = { 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Add/Remove packages here
-archbox_pkgs="alacritty direnv music-mpd nix tmux vim zsh"
-macos_pkgs="alacritty-mac direnv nix tmux vim zsh"
+archbox_pkgs="alacritty direnv music-mpd nix tmux vim nvim zsh picom"
+macos_pkgs="alacritty-mac direnv nix tmux vim nvim zsh"
 
 cmd="stow"
 install() {

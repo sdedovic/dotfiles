@@ -3,8 +3,10 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Color Scheme?
-   use 'tobi-wan-kenobi/zengarden'
-   use 'jacoborus/tender.vim'
+  use 'tobi-wan-kenobi/zengarden'
+  use 'jacoborus/tender.vim'
+  use 'NLKNguyen/papercolor-theme'
+  use 'sainnhe/gruvbox-material'
 
 	use { 
 		'nvim-telescope/telescope.nvim', tag = '0.1.0', 

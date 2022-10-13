@@ -17,7 +17,7 @@ end
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.cmd [[
-colorscheme zengarden
+colorscheme PaperColor
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 ]]

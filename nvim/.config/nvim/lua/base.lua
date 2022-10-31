@@ -62,3 +62,38 @@ noremap('n', '<Leader>b', ':Telescope buffers<CR>')
 noremap('n', '<Leader>o', ':Telescope oldfiles<CR>')
 noremap('n', '<Leader>g', ':Telescope live_grep<CR>')
 noremap('n', 'z=', ':Telescope spell_suggest<CR>')
+
+-- LSP Configs
+local lsp_on_attach = function(_, bufnr)
+  local opts = { noremap=true, silent=true }
+
+  -- Format on save
+  vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', ':Telescope lsp_definitions theme=cursor<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', ':lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', ':lua vim.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>ln', ':lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<Leader>la', ':lua vim.lsp.buf.range_code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>lr', ':Telescope lsp_references theme=cursor<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>ls', ':Telescope lsp_workspace_symbols<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>ld', ':Telescope diagnostics<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>lt', ':Telescope lsp_type_definitions<CR>', opts)
+end
+
+local lspconfig = require('lspconfig')
+local setup_config = {
+  on_attach = lsp_on_attach,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  }
+}
+-- lspconfig.rust_analyzer.setup(setup_config)
+lspconfig.pyright.setup(setup_config)
+

@@ -19,3 +19,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-opencl"]
 	path = vim/.vim/pack/plugins/start/vim-opencl
 	url = https://github.com/petRUShka/vim-opencl.git
+[submodule "nvim/.local/share/nvim/site/pack/packer/start/packer.nvim"]
+	path = nvim/.local/share/nvim/site/pack/packer/start/packer.nvim
+	url = https://github.com/wbthomason/packer.nvim.git

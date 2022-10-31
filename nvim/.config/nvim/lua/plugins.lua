@@ -2,6 +2,9 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- LSP Configs
+  use 'neovim/nvim-lspconfig'
+
   -- Color Scheme?
   use 'tobi-wan-kenobi/zengarden'
   use 'jacoborus/tender.vim'

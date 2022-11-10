@@ -24,4 +24,6 @@ return require('packer').startup(function(use)
 
   use 'pangloss/vim-javascript'
   use 'maxmellon/vim-jsx-pretty'
+
+  use 'LnL7/vim-nix'
 end)

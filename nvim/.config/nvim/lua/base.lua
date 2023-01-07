@@ -96,4 +96,5 @@ local setup_config = {
 }
 -- lspconfig.rust_analyzer.setup(setup_config)
 lspconfig.pyright.setup(setup_config)
+lspconfig.tsserver.setup(setup_config)
 

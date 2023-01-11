@@ -25,6 +25,22 @@ install() {
 }
 
 init() {
+  if [[ ! -d ~/.oh-my-zsh ]]; then
+    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+  fi
+  (cd ~/.oh-my-zsh && git pull)
+
+  if [[ ! -d ~/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --all --no-fish --no-zsh --no-update-rc
+  fi
+  (cd ~/.fzf && git pull && ./install --all --no-fish --no-zsh --no-update-rc)
+
+  if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+      ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  fi
+
 	echo "Updating git submodules"
 	git submodule init
 	git submodule update

@@ -57,6 +57,25 @@ augroup('InitVimFiletypes', {
 
 
 -- telescope
+local telescope = require("telescope")
+local telescopeConfig = require("telescope.config")
+local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+table.insert(vimgrep_arguments, "--hidden")
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/package-lock.json")
+telescope.setup({
+  defaults = {
+    vimgrep_arguments = vimgrep_arguments,
+  },
+  pickers = {
+		find_files = {
+			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+		},
+	},
+})
 noremap('n', '<Leader>f', ':Telescope find_files<CR>')
 noremap('n', '<Leader>b', ':Telescope buffers<CR>')
 noremap('n', '<Leader>o', ':Telescope oldfiles<CR>')

@@ -69,8 +69,13 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # cargo
 if [ -e $HOME/.cargo/bin ] && [ -d $HOME/.cargo/bin ]; then export PATH=$HOME/.cargo/bin:$PATH; fi
 
-# nix
+# Nix
 if [ -e /home/stevan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/stevan/.nix-profile/etc/profile.d/nix.sh; fi
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
 
 # prompt stuff
 if [[ -n "$DISPLAY" && -z "$TMUX" ]];

@@ -75,7 +75,13 @@ telescope.setup({
 			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 		},
 	},
+  extensions = {
+    ["ui-select"] = {
+			require("telescope.themes").get_cursor {}
+		}
+  }
 })
+telescope.load_extension('ui-select')
 noremap('n', '<Leader>f', ':Telescope find_files<CR>')
 noremap('n', '<Leader>b', ':Telescope buffers<CR>')
 noremap('n', '<Leader>o', ':Telescope oldfiles<CR>')
@@ -113,7 +119,27 @@ local setup_config = {
     debounce_text_changes = 150,
   }
 }
--- lspconfig.rust_analyzer.setup(setup_config)
+lspconfig.rust_analyzer.setup(setup_config)
 lspconfig.pyright.setup(setup_config)
 lspconfig.tsserver.setup(setup_config)
 
+-- nix
+vim.api.nvim_command('autocmd BufRead,BufNewFile flake.lock setfiletype json')
+
+-- null-ls
+local null_ls = require('null-ls')
+null_ls.setup({
+  on_attach = lsp_on_attach,
+  sources = {
+    null_ls.builtins.code_actions.eslint,
+    null_ls.builtins.code_actions.statix,
+    null_ls.builtins.diagnostics.deadnix,
+    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.diagnostics.statix,
+    null_ls.builtins.formatting.alejandra,
+    null_ls.builtins.formatting.eslint,
+    null_ls.builtins.formatting.jq,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.terraform_fmt,
+  }
+})

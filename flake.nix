@@ -25,7 +25,7 @@
     })
     // {
       nixosModules = {
-        devtools = import ./systems/dev.nix;
+        devtools = import ./systems/devtools.nix;
       };
     };
 }

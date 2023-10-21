@@ -24,8 +24,10 @@
       formatter = pkgs.alejandra;
     })
     // {
-      nixosModules = {
-        devtools = import ./systems/devtools.nix;
+      homeManagerModules = {
+        devtools = {...}: {
+          imports = [./systems/devtools.nix];
+        };
       };
     };
 }

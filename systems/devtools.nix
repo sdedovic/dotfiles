@@ -4,12 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.dotfiles.devtools;
+  cfg = config.home.devtools;
 in {
-  imports = [];
-  options = {
-    enable = lib.mkEnableOption "devtools";
-  };
+  options.home.devtools.enable = lib.mkEnableOption "devtools";
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       neovim

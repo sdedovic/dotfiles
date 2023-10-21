@@ -26,7 +26,7 @@
     // {
       homeManagerModules = {
         devtools = {...}: {
-          imports = [./systems/devtools.nix];
+          imports = [./modules/devtools.nix];
         };
       };
     };

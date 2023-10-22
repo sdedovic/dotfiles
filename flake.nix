@@ -22,6 +22,19 @@
       };
     in {
       formatter = pkgs.alejandra;
+      packages.homeConfigurations = {
+        stevan = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./modules/devtools.nix
+            {
+              home.username = "stevan";
+              home.homeDirectory = "/home/stevan";
+              home.stateVersion = "23.05"; # Please read the comment before changing.
+            }
+          ];
+        };
+      };
     })
     // {
       homeManagerModules = {

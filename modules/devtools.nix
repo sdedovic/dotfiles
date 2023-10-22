@@ -16,6 +16,49 @@ in {
       jq
     ];
 
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      plugins = with pkgs.vimPlugins; [
+        # general
+        nvim-lspconfig
+        {
+          plugin = which-key-nvim;
+          type = "lua";
+          config = "require('which-key').setup {}";
+        }
+
+        # telescope and friends
+        plenary-nvim
+        telescope-fzf-native-nvim
+        telescope-ui-select-nvim
+        telescope-nvim
+
+        # language specific
+        vim-javascript
+        vim-jsx-pretty
+        vim-fireplace
+        vim-nix
+        vim-terraform
+
+        {
+          plugin = none-ls-nvim;
+          type = "lua";
+          config = ''
+            local null_ls = require('null-ls')
+            null_ls.setup({
+              on_attach = lsp_on_attach,
+              sources = {
+                null_ls.builtins.formatting.jq,
+                null_ls.builtins.formatting.terraform_fmt,
+                null_ls.builtins.formatting.alejandra,
+              }
+            })
+          '';
+        }
+      ];
+    };
+
     programs.fzf = {
       enable = true;
       enableZshIntegration = true;

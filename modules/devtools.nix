@@ -17,7 +17,6 @@ in {
 
     programs.neovim = {
       enable = true;
-      package = pkgs.neovim;
       defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
         # general

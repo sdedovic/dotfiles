@@ -93,7 +93,7 @@ in {
               pickers = {
                 find_files = {
                   -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-                  find_command = { "${pkgs.ripgrep/bin/rg}", "--files", "--hidden", "--glob", "!**/.git/*" },
+                  find_command = { "${pkgs.ripgrep}/bin/rg", "--files", "--hidden", "--glob", "!**/.git/*" },
               	},
               },
               extensions = {

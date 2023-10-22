@@ -11,13 +11,13 @@ in {
     home.packages = with pkgs; [
       ripgrep
       tmux
-      neovim
       alacritty
       jq
     ];
 
     programs.neovim = {
       enable = true;
+      package = pkgs.neovim;
       defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
         # general

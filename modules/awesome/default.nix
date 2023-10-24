@@ -21,9 +21,9 @@ in {
 
     services.picom = {
       enable = true;
-      fadeDelta = 2;
       backend = "glx";
       activeOpacity = 0.9;
+      vSync = true; # may help with performance
       extraArgs = [
         "--blur-method=dual_kawase"
         "--blur-strength=3"

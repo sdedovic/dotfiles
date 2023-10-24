@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.home.awesome-wm;
+  cfg = config.home.awesome;
 in {
-  options.home.awesome-wm.enable = lib.mkEnableOption "awesome-wm";
+  options.home.awesome.enable = lib.mkEnableOption "awesome";
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       mpc-cli
@@ -17,9 +17,8 @@ in {
     xsession = {
       enable = true;
       windowManager.awesome.enable = true;
-      scriptPath = ".hm-xsession";
     };
 
-    home.file.".config/awesome/rc.lua".source = ./awesome/rc.lua;
+    home.file.".config/awesome/rc.lua".source = ./rc.lua;
   };
 }

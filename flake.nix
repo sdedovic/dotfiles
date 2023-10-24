@@ -27,13 +27,13 @@
           inherit pkgs;
           modules = [
             ./modules/devtools.nix
-            ./modules/awesome-wm.nix
+            ./modules/awesome
             {
               home.username = "stevan";
               home.homeDirectory = "/home/stevan";
               home.stateVersion = "23.05"; # Please read the comment before changing.
               home.devtools.enable = true;
-              home.awesome-wm.enable = true;
+              home.awesome.enable = true;
             }
           ];
         };
@@ -45,7 +45,7 @@
           imports = [./modules/devtools.nix];
         };
         graphical = {...}: {
-          imports = [./modules/awesome-wm.nix];
+          imports = [./modules/awesome];
         };
       };
     };

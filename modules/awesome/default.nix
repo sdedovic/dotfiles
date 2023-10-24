@@ -22,7 +22,6 @@ in {
     services.picom = {
       enable = true;
       backend = "glx";
-      activeOpacity = 0.9;
       vSync = true; # may help with performance
       extraArgs = [
         "--blur-method=dual_kawase"
@@ -39,6 +38,11 @@ in {
         };
       };
     };
+
+    services.xscreensaver = {
+      enable = true;
+    };
+    home.file.".xscreensaver".source = ./.screensaver;
 
     home.file.".config/awesome/rc.lua".source = ./rc.lua;
   };

@@ -30,6 +30,16 @@ in {
       ];
     };
 
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        window.opacity = 0.0;
+        font = {
+          size = 9.5;
+        };
+      };
+    };
+
     home.file.".config/awesome/rc.lua".source = ./rc.lua;
   };
 }

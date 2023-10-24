@@ -23,7 +23,7 @@ in {
       enable = true;
       fadeDelta = 2;
       backend = "glx";
-      activeOpacity = 0.8;
+      activeOpacity = 0.9;
       extraArgs = [
         "--blur-method=dual_kawase"
         "--blur-strength=3"
@@ -33,9 +33,9 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
-        window.opacity = 0.0;
+        window.opacity = 0.8;
         font = {
-          size = 9.5;
+          size = 12;
         };
       };
     };

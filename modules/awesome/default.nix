@@ -42,7 +42,7 @@ in {
     services.xscreensaver = {
       enable = true;
     };
-    home.file.".xscreensaver".source = ./.screensaver;
+    home.file.".xscreensaver".source = ./.xscreensaver;
 
     home.file.".config/awesome/rc.lua".source = ./rc.lua;
   };

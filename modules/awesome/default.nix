@@ -22,7 +22,7 @@ in {
     services.picom = {
       enable = true;
       fadeDelta = 2;
-      backend = "gfx";
+      backend = "glx";
       extraArgs = [
         "--blur-method=dual_kawase"
         "--blur-strength=3"

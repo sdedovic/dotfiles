@@ -19,6 +19,16 @@ in {
       windowManager.awesome.enable = true;
     };
 
+    services.picom = {
+      enable = true;
+      fadeDelta = 2;
+      backend = "gfx";
+      extraArgs = [
+        "--blur-method=dual_kawase"
+        "--blur-strength=3"
+      ];
+    };
+
     home.file.".config/awesome/rc.lua".source = ./rc.lua;
   };
 }

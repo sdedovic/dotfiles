@@ -17,7 +17,7 @@ in {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-      extraPackages = [ pkgs.ripgrep ];
+      extraPackages = [pkgs.ripgrep];
       plugins = with pkgs.vimPlugins; [
         # lsp
         {

@@ -27,6 +27,7 @@
           inherit pkgs;
           modules = [
             ./modules/devtools.nix
+            ./modules/awesome-wm.nix
             {
               home.username = "stevan";
               home.homeDirectory = "/home/stevan";
@@ -39,8 +40,10 @@
     // {
       homeManagerModules = {
         devtools = {...}: {
-          imports = [./modules/devtools.nix];
+          imports = [./modules/devtools.nix ];
         };
+        graphical = {...}: {
+          imports = [./modules/awesome-wm.nix];
       };
     };
 }

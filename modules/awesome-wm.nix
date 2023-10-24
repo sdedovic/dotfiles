@@ -17,6 +17,7 @@ in {
     xsession = {
       enable = true;
       windowManager.awesome.enable = true;
+      scriptPath = ".hm-xsession";
     };
 
     home.file.".config/awesome/rc.lua".source = ./awesome/rc.lua;

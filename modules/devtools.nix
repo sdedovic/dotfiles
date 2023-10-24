@@ -9,6 +9,7 @@ in {
   options.home.devtools.enable = lib.mkEnableOption "devtools";
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      ripgrep
       tmux
       alacritty
       jq
@@ -17,7 +18,7 @@ in {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-      extraPackages = [pkgs.ripgrep];
+      extraPackages = with pkgs; [alejandra ripgrep terraform];
       plugins = with pkgs.vimPlugins; [
         # lsp
         {

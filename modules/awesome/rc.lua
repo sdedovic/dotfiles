@@ -40,6 +40,10 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
+local dpi = require("beautiful.xresources").apply_dpi
+beautiful.useless_gap = dpi(5)
+beautiful.border_width = dpi(2)
+
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
 editor = "vim" 

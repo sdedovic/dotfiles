@@ -32,6 +32,8 @@
               home.username = "stevan";
               home.homeDirectory = "/home/stevan";
               home.stateVersion = "23.05"; # Please read the comment before changing.
+              home.devtools.enable = true;
+              home.awesome-wm.enable = true;
             }
           ];
         };
@@ -40,10 +42,11 @@
     // {
       homeManagerModules = {
         devtools = {...}: {
-          imports = [./modules/devtools.nix ];
+          imports = [./modules/devtools.nix];
         };
         graphical = {...}: {
           imports = [./modules/awesome-wm.nix];
+        };
       };
     };
 }

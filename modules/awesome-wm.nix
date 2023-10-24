@@ -9,7 +9,7 @@ in {
   options.home.awesome-wm.enable = lib.mkEnableOption "awesome-wm";
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      mpc
+      mpc-cli
       rofi
       flameshot
     ];

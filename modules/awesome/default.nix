@@ -23,6 +23,7 @@ in {
       enable = true;
       fadeDelta = 2;
       backend = "glx";
+      activeOpacity = 0.8;
       extraArgs = [
         "--blur-method=dual_kawase"
         "--blur-strength=3"

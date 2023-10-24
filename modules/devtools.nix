@@ -11,7 +11,6 @@ in {
     home.packages = with pkgs; [
       ripgrep
       tmux
-      alacritty
       jq
     ];
 

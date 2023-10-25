@@ -42,9 +42,7 @@ in {
     services.xscreensaver = {
       enable = true;
       settings = {
-        mode = "one";
-        selected = 1;
-        programs = "hexadrop -root -delay 2655 -speed 0.55 -sides 6 -no-lockstep";
+        mode = "blank";
       };
     };
 

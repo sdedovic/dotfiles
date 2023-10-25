@@ -39,12 +39,15 @@ in {
       };
     };
 
-    services.xscreensaver = {
-      enable = true;
-      settings = {
-        mode = "blank";
-      };
-    };
+    # this is broken. xscreensaver never reads the settings nor can they be set with ~/.xscreensaver
+    # services.xscreensaver = {
+    #   enable = true;
+    #   settings = {
+    #     mode = "blank";
+    #     selected = 1;
+    #     programs = "hexadrop -root -delay 2655 -speed 0.55 -sides 6 -no-lockstep";
+    #   };
+    # };
 
     home.file.".config/awesome/rc.lua".source = ./rc.lua;
   };

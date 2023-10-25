@@ -39,9 +39,9 @@ in {
       };
     };
 
-    services.xscreensaver = {
-      enable = true;
-    };
+    #  services.xscreensaver = {
+    #    enable = true;
+    #  };
     home.file.".xscreensaver".source = ./.xscreensaver;
 
     home.file.".config/awesome/rc.lua".source = ./rc.lua;

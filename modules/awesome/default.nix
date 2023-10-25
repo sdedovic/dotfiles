@@ -29,6 +29,25 @@ in {
       ];
     };
 
+    services.mpd = {
+      enable = true;
+      musicDirectory = "/data/music";
+      extraConfig = ''
+        audio_output {
+          type		"pulse"
+          name		"MPD Pulse Output"
+        }
+
+        audio_output {
+            type                    "fifo"
+            name                    "viz"
+            path                    "/tmp/mpd.fifo"
+            format                  "44100:16:2"
+            buffer_time             "5000" # microseconds
+        }
+      '';
+    };
+
     programs.alacritty = {
       enable = true;
       settings = {

@@ -31,6 +31,11 @@ in {
 
     services.mpd = {
       enable = true;
+
+      network.listenAddress = "127.0.0.1";
+      network.port = 6600;
+      network.startWhenNeeded = true;
+
       musicDirectory = "/data/music";
       extraConfig = ''
         audio_output {
@@ -46,6 +51,17 @@ in {
             buffer_time             "5000" # microseconds
         }
       '';
+    };
+
+    services.mpd-discord-rpc = {
+      enable = true;
+      settings = {
+        hosts = ["localhost:6600"];
+        format = {
+          details = "$title";
+          state = "On $album by $artist";
+        };
+      };
     };
 
     programs.ncmpcpp = {

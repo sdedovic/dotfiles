@@ -100,7 +100,7 @@ in {
         visualizer_sync_interval = 30;
         visualizer_look = "██";
         visualizer_color = "136,135,134,133,132,131";
-        visualizer_type = "spectrum";
+        visualizer_type = "\"spectrum\"";
         visualizer_spectrum_smooth_look = "yes";
         visualizer_in_stereo = "yes";
         visualizer_spectrum_hz_max = 16000;

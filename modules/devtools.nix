@@ -12,6 +12,8 @@ in {
       ripgrep
       tmux
       jq
+      bws
+      htop
     ];
 
     programs.neovim = {

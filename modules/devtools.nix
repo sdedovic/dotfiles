@@ -196,6 +196,7 @@ in {
     programs.zsh = {
       enable = true;
       enableCompletion = true;
+      history.share = false;
       shellAliases = {
         ta = "tmux attach";
         ts = "tmux new -s";

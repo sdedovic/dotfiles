@@ -216,10 +216,10 @@ in {
         fi
 
         # robbyrussell theme but overrides to add hostname
-        PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) " # arrow
-        PROMPT+="%{$fg[red]%}[%m]%{$reset_color%} "              # hostname
-        PROMPT+="%{$fg[cyan]%}%c%{$reset_color%} "               # current working directory
-        PROMPT+=' $(git_prompt_info)'                            # git info
+        PROMPT="%{$fg[red]%}-[%m]%{$reset_color%} "               # hostname
+        PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) " # arrow
+        PROMPT+="%{$fg[cyan]%}%c%{$reset_color%} "                # current working directory
+        PROMPT+="$(git_prompt_info)"                              # git
 
       '';
     };

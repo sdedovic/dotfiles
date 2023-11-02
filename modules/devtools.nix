@@ -214,6 +214,12 @@ in {
         then
           exec tmux new-session;
         fi
+
+        # robbyrussell theme but overrides to add hostname
+        PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) %{$fg[cyan]%}%c%{$reset_color%}"
+        PROMPT+='%{$fg[red]%}[%m]%{$reset_color%} '
+        PROMPT+=' $(git_prompt_info)'
+
       '';
     };
 

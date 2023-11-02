@@ -217,9 +217,8 @@ in {
 
         # robbyrussell theme but overrides to add hostname
         PROMPT="%{$fg[red]%}[%m]%{$reset_color%}"
-        PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) "
-        PROMPT+="%{$fg[cyan]%}%c%{$reset_color%}  "
-        PROMPT+="$(git_prompt_info)"
+        PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) %{$fg[cyan]%}%c%{$reset_color%}"
+        PROMPT+=' $(git_prompt_info)'
 
       '';
     };

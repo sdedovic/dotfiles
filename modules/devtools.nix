@@ -15,6 +15,8 @@ in {
       bws
       htop
       tree
+      git
+      stow
     ];
 
     programs.neovim = {

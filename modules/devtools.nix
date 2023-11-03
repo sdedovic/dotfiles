@@ -14,6 +14,7 @@ in {
       jq
       bws
       htop
+      tree
     ];
 
     programs.neovim = {
@@ -209,7 +210,11 @@ in {
         theme = "robbyrussell";
       };
       syntaxHighlighting.enable = true;
-      initExtra = ''
+      initExtra = let
+        dl-mp4 = builtins.readFile ./dl-mp4.sh;
+      in ''
+        ${dl-mp4}
+
         if [[ -n "$DISPLAY" && -z "$TMUX" ]];
         then
           exec tmux new-session;

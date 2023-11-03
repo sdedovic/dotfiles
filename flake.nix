@@ -23,30 +23,11 @@
       };
     in {
       formatter = pkgs.alejandra;
-      packages.homeConfigurations = {
-        stevan = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./modules/devtools.nix
-            ./modules/awesome
-            {
-              home.username = "stevan";
-              home.homeDirectory = "/home/stevan";
-              home.stateVersion = "23.05"; # Please read the comment before changing.
-              home.devtools.enable = true;
-              home.awesome.enable = true;
-            }
-          ];
-        };
-      };
     })
     // {
       homeManagerModules = {
         devtools = {...}: {
           imports = [./modules/devtools.nix];
-        };
-        graphical = {...}: {
-          imports = [./modules/awesome];
         };
       };
     };

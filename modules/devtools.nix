@@ -17,6 +17,9 @@ in {
       tree
       git
       stow
+      zip
+      unzip
+      rar
     ];
 
     programs.neovim = {

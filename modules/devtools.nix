@@ -19,7 +19,7 @@ in {
       stow
       zip
       unzip
-      rar
+      #rar
     ];
 
     programs.neovim = {

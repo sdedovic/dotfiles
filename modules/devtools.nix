@@ -25,7 +25,7 @@ in {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-      extraPackages = with pkgs; [alejandra ripgrep terraform];
+      extraPackages = with pkgs; [alejandra ripgrep terraform python3];
       plugins = with pkgs.vimPlugins; [
         # lsp
         {

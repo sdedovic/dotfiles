@@ -240,5 +240,9 @@ in {
       nix-direnv.enable = true;
     };
     home.file.".direnvrc".source = ./.direnvrc;
+
+    home.file.".lein/profiles.clj".text = ''
+      {:user {:plugins [[cider/cider-nrepl "0.44.0"]]}}
+    '';
   };
 }

@@ -195,16 +195,17 @@ in {
 
         -- per-language
         vim.api.nvim_create_autocmd('FileType', {
+          pattern = { '*' },
           callback = function(args)
             local ft = vim.bo[args.buf].filetype
             if ft == 'clojure' then
               noremap('n', '<Enter>', ':Eval<CR>')
-            else if ft == 'cuda' then
+            elseif ft == 'cuda' then
               vim.o.expandtab = true
               vim.o.tabstop = 2
               vim.o.shiftwidth = 2
               vim.o.softtabstop = 2
-            else if ft == 'javascript' or ft == 'json' then
+            elseif ft == 'javascript' or ft == 'json' then
               vim.o.expandtab = true
               vim.o.shiftwidth = 2
               vim.o.softtabstop = 2

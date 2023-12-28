@@ -169,6 +169,7 @@ in {
         vim.g.mapleader = ' '
         noremap('n', '<Leader>e', ':Explore<CR>')
         noremap('n', '<Leader>w', ':update<CR>')
+
         -- window navigation
         noremap('n', '<C-h>', '<C-w><C-h>')
         noremap('n', '<C-j>', '<C-w><C-j>')
@@ -191,6 +192,25 @@ in {
         vim.o.wildmode = 'longest:full,full'
         vim.o.showmatch = true
         vim.o.wrap = false
+
+        -- per-language
+        vim.api.nvim_create_autocmd('FileType', {
+          callback = function(args)
+            local ft = vim.bo[args.buf].filetype
+            if ft == 'clojure' then
+              noremap('n', '<Enter>', ':Eval<CR>')
+            else if ft == 'cuda' then
+              vim.o.expandtab = true
+              vim.o.tabstop = 2
+              vim.o.shiftwidth = 2
+              vim.o.softtabstop = 2
+            else if ft == 'javascript' or ft == 'json' then
+              vim.o.expandtab = true
+              vim.o.shiftwidth = 2
+              vim.o.softtabstop = 2
+            end
+          end
+        })
       '';
     };
 

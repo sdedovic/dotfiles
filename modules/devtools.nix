@@ -22,6 +22,12 @@ in {
       #rar
     ];
 
+    programs.git = {
+    enable = true;
+    userName  = "sdedovic";
+    userEmail = "stevan@dedovic.com";
+  };
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;

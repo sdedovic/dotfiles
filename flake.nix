@@ -30,19 +30,18 @@
       };
     })
     // (let
-      homeManagerSetup = homeDirectory: username: (
+      homeManagerSetup = { 
+        username,
+        homeDirectory ? "/home/${username}",
+        system ? "x86_64-linux",
+        isNixOS ? false,
+      } : (
         let
-          specialArgs =
-            inputs
-            // {
-              inherit homeDirectory;
-              isNixOS = false;
-            };
+          specialArgs = inputs // { inherit isNixOS; };
         in
           home-manager.lib.homeManagerConfiguration {
             pkgs = import nixpkgs {
-              # TODO: move system to homeManagerSetup arg and maybe replace the inputs with an attribute set
-              system = "x86_64-linux";
+              inherit system;
               config.allowUnfree = true;
             };
             modules = [
@@ -59,7 +58,12 @@
       );
     in {
       homeConfigurations = {
-        stevan-wsl = homeManagerSetup "/root" "root";
+        stevan-wsl = homeManagerSetup { username = "root"; homeDirectory = "/root"; };
+        stevan-mac = homeManagerSetup { 
+          username = "stevan"; 
+          homeDirectory = "/Users/stevan"; 
+          system = "x86_64-darwin";
+        };
       };
       homeManagerModules = {
         devtools = {...}: {

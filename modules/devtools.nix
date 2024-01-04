@@ -9,6 +9,7 @@ in {
   imports = [
     ./nvim.nix
     ./git.nix
+    ./alacritty.nix
   ];
   options.home.devtools.enable = lib.mkEnableOption "devtools";
   config = lib.mkIf cfg.enable {

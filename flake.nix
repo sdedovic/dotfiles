@@ -35,6 +35,7 @@
         homeDirectory ? "/home/${username}",
         system ? "x86_64-linux",
         isNixOS ? false,
+        modules ? [],
       }: (
         let
           specialArgs = inputs // {inherit isNixOS;};
@@ -44,15 +45,17 @@
               inherit system;
               config.allowUnfree = true;
             };
-            modules = [
-              ./modules/devtools.nix
-              {
-                home.devtools.enable = true;
-                home.stateVersion = "23.11";
-                home.username = username;
-                home.homeDirectory = homeDirectory;
-              }
-            ];
+            modules =
+              [
+                ./modules/devtools.nix
+                {
+                  home.devtools.enable = true;
+                  home.stateVersion = "23.11";
+                  home.username = username;
+                  home.homeDirectory = homeDirectory;
+                }
+              ]
+              ++ modules;
             extraSpecialArgs = specialArgs;
           }
       );
@@ -66,6 +69,11 @@
           username = "stevan";
           homeDirectory = "/Users/stevan";
           system = "x86_64-darwin";
+          modules = [
+            {
+              home.devtools.highDPI = true;
+            }
+          ];
         };
       };
       homeManagerModules = {

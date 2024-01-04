@@ -30,14 +30,14 @@
       };
     })
     // (let
-      homeManagerSetup = { 
+      homeManagerSetup = {
         username,
         homeDirectory ? "/home/${username}",
         system ? "x86_64-linux",
         isNixOS ? false,
-      } : (
+      }: (
         let
-          specialArgs = inputs // { inherit isNixOS; };
+          specialArgs = inputs // {inherit isNixOS;};
         in
           home-manager.lib.homeManagerConfiguration {
             pkgs = import nixpkgs {
@@ -58,10 +58,13 @@
       );
     in {
       homeConfigurations = {
-        stevan-wsl = homeManagerSetup { username = "root"; homeDirectory = "/root"; };
-        stevan-mac = homeManagerSetup { 
-          username = "stevan"; 
-          homeDirectory = "/Users/stevan"; 
+        stevan-wsl = homeManagerSetup {
+          username = "root";
+          homeDirectory = "/root";
+        };
+        stevan-mac = homeManagerSetup {
+          username = "stevan";
+          homeDirectory = "/Users/stevan";
           system = "x86_64-darwin";
         };
       };

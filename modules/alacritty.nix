@@ -2,7 +2,7 @@
   pkgs,
   config,
   lib,
-  isNixOS,
+  isNixOS ? false,
   ...
 }: let
   cfg = config.home.devtools;

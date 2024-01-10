@@ -11,12 +11,12 @@ in {
   config = lib.mkIf cfg.enable (
     let
       settings = {
-        window.opacity = 0.9;
+        window.opacity = 0.8;
         font = {
           size =
             if cfg.highDPI
-            then 14.5
-            else 9.5;
+            then 16
+            else 12;
         };
       };
     in {

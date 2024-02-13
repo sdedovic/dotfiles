@@ -29,6 +29,8 @@ in {
       enable = true;
       inherit (cfg.git) userName userEmail;
 
+      difftastic.enable = true;
+
       aliases = let
         fzf = config.programs.fzf.package;
         git = pkgs.git;

@@ -6,9 +6,6 @@
 }: let
   cfg = config.home.devtools;
 in {
-  imports = [
-    ./nvim.nix
-  ];
   options.home.devtools.git = with lib; {
     userName = lib.mkOption {
       default = "sdedovic";
@@ -29,8 +26,22 @@ in {
     ];
 
     programs.git = {
-      inherit (cfg.git) userName userEmail;
       enable = true;
+      inherit (cfg.git) userName userEmail;
+
+      aliases = let
+        fzf = config.programs.fzf.package;
+        git = pkgs.git;
+      in {
+        # shows a list of modified/new files in fzf, selection will git-add
+        fza = "!${git}/bin/git ls-files -m -o --exclude-standard | ${fzf}/bin/fzf -m --print0 | xargs -0 git add";
+
+        # remove local branches that don't exist on remote
+        gone = "!f() { ${git}/bin/git fetch --all --prune; ${git}/bin/git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f";
+
+        # print out the root of the repo, may be used 'cd $(git root)'
+        root = "rev-parse --show-toplevel";
+      };
     };
   };
 }

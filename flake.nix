@@ -39,12 +39,13 @@
       }: (
         let
           specialArgs = inputs // {inherit isNixOS;};
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
         in
           home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-            };
+            inherit pkgs;
             modules =
               [
                 ./modules/devtools.nix
@@ -53,6 +54,12 @@
                   home.stateVersion = "23.11";
                   home.username = username;
                   home.homeDirectory = homeDirectory;
+                }
+                {
+                  nix = {
+                    package = pkgs.nix;
+                    settings.experimental-features = "nix-command flakes";
+                  };
                 }
               ]
               ++ modules;
@@ -64,6 +71,11 @@
         stevan-wsl = homeManagerSetup {
           username = "root";
           homeDirectory = "/root";
+          modules = [
+            {
+              home.devtools.highDPI = true;
+            }
+          ];
         };
         stevan-mac = homeManagerSetup {
           username = "stevan";

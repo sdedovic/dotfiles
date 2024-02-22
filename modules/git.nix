@@ -29,6 +29,8 @@ in {
       enable = true;
       inherit (cfg.git) userName userEmail;
 
+      lfs.enable = true;
+
       difftastic.enable = true;
 
       aliases = let

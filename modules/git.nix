@@ -28,6 +28,9 @@ in {
     programs.git = {
       enable = true;
       inherit (cfg.git) userName userEmail;
+      extraConfig = {
+        credential.helper = "cache --timeout=3600";
+      };
 
       lfs.enable = true;
 

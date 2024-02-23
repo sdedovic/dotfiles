@@ -87,6 +87,15 @@
             }
           ];
         };
+        stevan = homeManagerSetup {
+          username = "stevan";
+          isNixOS = true;
+          modules = [
+            {
+              home.devtools.highDPI = true;
+            }
+          ];
+        };
       };
       homeManagerModules = {
         devtools = {...}: {

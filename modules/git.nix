@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.home.devtools;
+  git = pkgs.gitFull;
 in {
   options.home.devtools.git = with lib; {
     userName = lib.mkOption {
@@ -21,14 +22,12 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      git
-    ];
+    home.packages = [git];
 
     programs.git = {
       inherit (cfg.git) userName userEmail;
       enable = true;
-      package = pkgs.gitFull;
+      package = git;
 
       extraConfig.credential.helper = "cache --timeout=3600";
       lfs.enable = true;
@@ -36,7 +35,6 @@ in {
 
       aliases = let
         fzf = config.programs.fzf.package;
-        git = pkgs.git;
       in {
         # shows a list of modified/new files in fzf, selection will git-add
         fza = "!${git}/bin/git ls-files -m -o --exclude-standard | ${fzf}/bin/fzf -m --print0 | xargs -0 git add";

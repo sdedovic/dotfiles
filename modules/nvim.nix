@@ -178,6 +178,23 @@ in {
         vim.o.showmatch = true
         vim.o.wrap = false
 
+        -- better compl-filename
+        vim.api.nvim_create_autocmd('InsertLeave', {
+          group = vim.api.nvim_create_augroup('RelativeFileAutocomplete', { clear = true }),
+          pattern = { '*' },
+          callback = function()
+            if vim.w.relative_file_autocomplete_cleanup then
+              vim.cmd.lcd('-')
+              vim.w.relative_file_autocomplete_cleanup = false
+            end
+          end
+        })
+        function enter_relative_file_autocomplete()
+          vim.w.relative_file_autocomplete_cleanup = true
+          vim.cmd.lcd('%:p:h')
+        end
+        noremap('i', '<C-x><C-x><C-f>', '<C-o><cmd> lua enter_relative_file_autocomplete()<CR><C-x><C-f>')
+
         -- per-language
         vim.api.nvim_create_autocmd('FileType', {
           pattern = { '*' },

@@ -55,12 +55,6 @@
                   home.username = username;
                   home.homeDirectory = homeDirectory;
                 }
-                {
-                  nix = {
-                    package = pkgs.nix;
-                    settings.experimental-features = "nix-command flakes";
-                  };
-                }
               ]
               ++ modules;
             extraSpecialArgs = specialArgs;

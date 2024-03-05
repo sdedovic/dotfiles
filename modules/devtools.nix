@@ -7,9 +7,10 @@
   cfg = config.home.devtools;
 in {
   imports = [
-    ./nvim.nix
-    ./git.nix
     ./alacritty.nix
+    ./git.nix
+    ./nix.nix
+    ./nvim.nix
   ];
   options.home.devtools.enable = lib.mkEnableOption "devtools";
   config = lib.mkIf cfg.enable {

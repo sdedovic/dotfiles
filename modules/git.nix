@@ -46,5 +46,7 @@ in {
         root = "rev-parse --show-toplevel";
       };
     };
+
+    services.ssh-agent.enable = true;
   };
 }

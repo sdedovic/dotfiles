@@ -10,7 +10,7 @@ in {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-      extraPackages = with pkgs; [alejandra ripgrep terraform python3];
+      extraPackages = with pkgs; [alejandra ripgrep terraform python3 jq];
       plugins = with pkgs.vimPlugins; [
         # lsp
         {

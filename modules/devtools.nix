@@ -22,9 +22,11 @@ in {
       htop
       tree
       stow
+
       zip
       unzip
-      #rar
+      p7zip
+      unrar
     ];
 
     programs.fzf = {

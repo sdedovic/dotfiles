@@ -27,6 +27,8 @@ in {
       unzip
       p7zip
       unrar
+
+      ci-tool
     ];
 
     programs.fzf = {

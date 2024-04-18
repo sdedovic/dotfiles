@@ -15,14 +15,23 @@
     flake-utils,
     nixpkgs,
     home-manager,
-  } @ inputs:
+  } @ inputs: let
+    # TODO: move this to an overlays directory, eventually
+    overlays = [
+      (final: prev: {
+        argc = final.callPackage ./pkgs/argc {};
+        ci-tool = final.callPackage ./pkgs/ci-tool {};
+      })
+    ];
+  in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
-        inherit system;
+        inherit system overlays;
         config.allowUnfree = true;
       };
     in {
       formatter = pkgs.alejandra;
+      packages.ci-tool = pkgs.ci-tool;
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           home-manager.packages.${system}.home-manager
@@ -40,7 +49,7 @@
         let
           specialArgs = inputs // {inherit isNixOS;};
           pkgs = import nixpkgs {
-            inherit system;
+            inherit system overlays;
             config.allowUnfree = true;
           };
         in
@@ -75,6 +84,16 @@
           username = "stevan";
           homeDirectory = "/Users/stevan";
           system = "x86_64-darwin";
+          modules = [
+            {
+              home.devtools.highDPI = true;
+            }
+          ];
+        };
+        stevan-mac-m3 = homeManagerSetup {
+          username = "stevan";
+          homeDirectory = "/Users/stevan";
+          system = "aarch64-darwin";
           modules = [
             {
               home.devtools.highDPI = true;

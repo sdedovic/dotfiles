@@ -16,13 +16,7 @@
     nixpkgs,
     home-manager,
   } @ inputs: let
-    # TODO: move this to an overlays directory, eventually
-    overlays = [
-      (final: prev: {
-        argc = final.callPackage ./pkgs/argc {};
-        ci-tool = final.callPackage ./pkgs/ci-tool {};
-      })
-    ];
+    overlays = import ./overlays;
   in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
@@ -70,6 +64,7 @@
           }
       );
     in {
+      overlays.default = nixpkgs.lib.composeManyExtensions overlays;
       homeConfigurations = {
         stevan-wsl = homeManagerSetup {
           username = "root";

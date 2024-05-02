@@ -3,5 +3,4 @@ let
     argc = final.callPackage ../pkgs/argc {};
     ci-tool = final.callPackage ../pkgs/ci-tool {};
   };
-in
-  [newPackages]
+in [newPackages]

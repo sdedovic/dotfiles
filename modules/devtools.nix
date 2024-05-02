@@ -11,6 +11,7 @@ in {
     ./git.nix
     ./nix.nix
     ./nvim.nix
+    ./languages.nix
   ];
   options.home.devtools.enable = lib.mkEnableOption "devtools";
   config = lib.mkIf cfg.enable {
@@ -76,9 +77,5 @@ in {
       nix-direnv.enable = true;
     };
     home.file.".direnvrc".source = ./.direnvrc;
-
-    home.file.".lein/profiles.clj".text = ''
-      {:user {:plugins [[cider/cider-nrepl "0.44.0"]]}}
-    '';
   };
 }

@@ -20,8 +20,8 @@ lib.mkMerge [
   # Julia
   {
     home.packages = with pkgs; [
-      julia-bin.overrideAttrs
-      (final: prev: {doCheck = false;})
+      (julia-bin.overrideAttrs
+      (final: prev: {doCheck = false;}))
     ];
   }
 ]

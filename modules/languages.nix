@@ -21,7 +21,7 @@ lib.mkMerge [
   {
     home.packages = with pkgs; [
       (julia-bin.overrideAttrs
-      (final: prev: {doCheck = false;}))
+      (final: prev: {doInstallCheck = false;}))
     ];
   }
 ]

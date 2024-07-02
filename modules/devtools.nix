@@ -23,6 +23,7 @@ in {
       htop
       tree
       stow
+      ffmpeg_7-headless
 
       zip
       unzip

@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  isNixOS ? false,
   ...
 }:
 lib.mkMerge [
@@ -21,7 +22,14 @@ lib.mkMerge [
   {
     home.packages = with pkgs; [
       (julia-bin.overrideAttrs
-      (final: prev: {doInstallCheck = false;}))
+        (final: prev: {doInstallCheck = false;}))
     ];
   }
+
+  # externally managed Rust
+  (lib.mkIf (! isNixOS) {
+    programs.zsh.envExtra = ''
+      . "$HOME/.cargo/env"
+    '';
+  })
 ]

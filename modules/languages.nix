@@ -32,4 +32,11 @@ lib.mkMerge [
       . "$HOME/.cargo/env"
     '';
   })
+
+  # Javascript
+  {
+    home.packages = with pkgs; [
+      nodejs_20
+    ];
+  }
 ]

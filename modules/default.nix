@@ -35,8 +35,9 @@ in {
       ranger
       tree
 
-      # encoding / decoding
+      # multimedia tools
       ffmpeg_7-headless
+      yt-dlp
 
       # archives
       zip

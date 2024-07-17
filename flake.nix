@@ -51,7 +51,7 @@
             inherit pkgs;
             modules =
               [
-                ./modules/devtools.nix
+                ./modules
                 {
                   home.devtools.enable = true;
                   home.stateVersion = "23.11";
@@ -107,7 +107,7 @@
       };
       homeManagerModules = {
         devtools = {...}: {
-          imports = [./modules/devtools.nix];
+          imports = [./modules];
         };
       };
     });

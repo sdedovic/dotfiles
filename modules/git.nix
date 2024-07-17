@@ -47,6 +47,9 @@ in {
       };
     };
 
+    programs.zsh.oh-my-zsh.plugins = ["git"];
+
+    # TODO(2024-07-17): figure out how to set up some kind of ssh agent for all platforms
     # services.ssh-agent.enable = true;
   };
 }

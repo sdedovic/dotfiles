@@ -15,6 +15,7 @@ in {
     ./nix.nix
     ./nvim.nix
     ./tmux
+    ./wtf
     ./zsh
   ];
 

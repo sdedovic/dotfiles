@@ -1,0 +1,68 @@
+
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [41, 42, 41]
+    rows: [13, 10, 10]
+  refreshInterval: 1
+  mods:
+    prettyweather:
+      title: ""
+      enabled: true
+      city: "Chicago"
+      position:
+        top: 1
+        left: 0
+        width: 3
+        height: 2
+      refreshInterval: 300
+      view: "1"
+      unit: "u"
+      border: true
+    digitalclock:
+      color: orange
+      enabled: true
+      font: bigfont
+      hourFormat: 12
+      position:
+        top: 0
+        left: 1
+        height: 1
+        width: 1
+      refreshInterval: 1
+      title: "Chicago"
+      border: true
+    ipapi:
+      colors:
+        name: "lightblue"
+        value: "white"
+      enabled: true
+      position:
+        top: 0
+        left: 0
+        width: 1
+        height: 1
+      refreshInterval: 150s
+      args:
+        - "ip"
+        - "isp"
+        - "as"
+        - "asname"
+        - "organization"
+        - "city"
+        - "regionName"
+        - "postalCode"
+        - "country"
+    resourceusage:
+      enabled: true
+      position:
+        top: 0
+        left: 2
+        height: 1
+        width: 1
+      refreshInterval: 1
+      graphIcon: "▒"

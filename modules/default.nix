@@ -28,6 +28,7 @@ in {
       jq
       htop
       stow
+      mdcat
 
       # secrets management
       bws

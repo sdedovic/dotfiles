@@ -21,6 +21,15 @@ This codebase uses [Home Manager](https://github.com/nix-community/home-manager)
 - [argc](https://github.com/sigoden/argc)
 - [ci-tool](./pkgs/ci-tool)
 
+**software**
+- [mdcat](https://github.com/swsnr/mdcat)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [jq](https://jqlang.github.io/jq/)
+- [htop](https://htop.dev/)
+- [stow](https://www.gnu.org/software/stow/)
+- [ranger](https://github.com/ranger/ranger)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+
 ## Using
 ### Standalone
 ```

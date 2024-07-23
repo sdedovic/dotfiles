@@ -33,6 +33,12 @@ lib.mkMerge [
     '';
   })
 
+  {
+    programs.zsh.envExtra = ''
+      PATH=$PATH:$HOME/.cargo/bin/
+    '';
+  }
+
   # Javascript
   {
     home.packages = with pkgs; [

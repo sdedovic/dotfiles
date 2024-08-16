@@ -22,7 +22,7 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    home.packages = [git];
+    home.packages = [git pkgs.bfg-repo-cleaner];
 
     programs.git = {
       inherit (cfg.git) userName userEmail;

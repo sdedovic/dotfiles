@@ -112,6 +112,7 @@ in {
         vim-fireplace
         vim-nix
         vim-terraform
+        vim-glsl
 
         # theme
         {
@@ -178,6 +179,7 @@ in {
         vim.o.wildmode = 'longest:full,full'
         vim.o.showmatch = true
         vim.o.wrap = false
+        vim.o.backupcopy = 'yes'
 
         -- better compl-filename
         vim.api.nvim_create_autocmd('InsertLeave', {

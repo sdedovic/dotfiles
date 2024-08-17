@@ -6,6 +6,13 @@
   ...
 }:
 lib.mkMerge [
+  # Python
+  {
+    home.packages = with pkgs; [
+      python312
+    ];
+  }
+
   # Clojure
   {
     home.packages = with pkgs; [

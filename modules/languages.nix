@@ -5,12 +5,15 @@
   isNixOS ? false,
   ...
 }:
-lib.mkMerge [
+let
+  node = pkgs.nodejs_20;
+in 
+  lib.mkMerge [
   # Python
   {
     home.packages = with pkgs; [
       python312
-      nodePackages.pyright
+      node.pkgs.pyright
     ];
   }
 
@@ -50,8 +53,8 @@ lib.mkMerge [
   # Javascript / Typescript
   {
     home.packages = with pkgs; [
-      nodejs_20
-      nodePackages.typescript-language-server
+      node
+      node.pkgs.typescript-language-server
     ];
   }
 ]

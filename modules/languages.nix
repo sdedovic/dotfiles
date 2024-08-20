@@ -10,6 +10,7 @@ lib.mkMerge [
   {
     home.packages = with pkgs; [
       python312
+      nodePackages.pyright
     ];
   }
 
@@ -46,10 +47,11 @@ lib.mkMerge [
     '';
   }
 
-  # Javascript
+  # Javascript / Typescript
   {
     home.packages = with pkgs; [
       nodejs_20
+      nodePackages.typescript-language-server
     ];
   }
 ]

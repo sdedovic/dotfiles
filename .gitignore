@@ -9,3 +9,5 @@ nvim/.local/share/nvim/site/pack/packer/start/
 # nix
 result
 result-*
+
+.idea/

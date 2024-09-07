@@ -7,16 +7,8 @@
 }:
 let
   node = pkgs.nodejs_20;
-in 
-  lib.mkMerge [
-  # Python
-  {
-    home.packages = with pkgs; [
-      python312
-      # node.pkgs.pyright
-    ];
-  }
-
+in
+lib.mkMerge [
   # Clojure
   {
     home.packages = with pkgs; [
@@ -31,14 +23,11 @@ in
 
   # Julia
   {
-    home.packages = with pkgs; [
-      (julia-bin.overrideAttrs
-        (final: prev: {doInstallCheck = false;}))
-    ];
+    home.packages = with pkgs; [ (julia-bin.overrideAttrs (final: prev: { doInstallCheck = false; })) ];
   }
 
   # externally managed Rust
-  (lib.mkIf (! isNixOS) {
+  (lib.mkIf (!isNixOS) {
     programs.zsh.envExtra = ''
       . "$HOME/.cargo/env"
     '';

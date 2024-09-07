@@ -1,54 +1,8 @@
+{ ... }:
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
-  cfg = config.home.devtools;
-in {
-  imports = [
-    ./alacritty.nix
-    ./direnv
-    ./git.nix
-    ./fzf.nix
-    ./languages.nix
-    ./nix.nix
-    ./nvim.nix
-    ./tmux
-    ./wtf
-    ./zsh
-  ];
-
-  options.home.devtools.enable = lib.mkEnableOption "devtools";
-
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # general system utilities
-      ripgrep
-      jq
-      htop
-      stow
-      mdcat
-
-      # secrets management
-      bws
-
-      # file system management
-      ranger
-      tree
-
-      # multimedia tools
-      ffmpeg_7-headless
-      yt-dlp
-
-      # archives
-      zip
-      unzip
-      p7zip
-      unrar
-
-      # my stuff
-      ci-tool
-    ];
+  homeManagerModules = {
+    minimal = import ./common;
+    desktop = import ./desktop;
+    server = import ./server;
   };
 }

@@ -17,7 +17,7 @@ rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-8NbVVSu2y8jgx6z8K4pjKidnRY74DQtYB6ueW7oIPx0=";
 
-  nativeBuildInputs = [installShellFiles];
+  nativeBuildInputs = [ installShellFiles ];
 
   postInstall = ''
     installShellCompletion --cmd argc \
@@ -27,9 +27,7 @@ rustPlatform.buildRustPackage rec {
   '';
 
   # TODO(2024-03-01): determine why this test is failing
-  checkFlags = [
-    "--skip=misc::escape"
-  ];
+  checkFlags = [ "--skip=misc::escape" ];
 
   meta = with lib; {
     description = "A command-line options, arguments and sub-commands parser for bash";
@@ -37,11 +35,9 @@ rustPlatform.buildRustPackage rec {
     changelog = "https://github.com/sigoden/argc/releases/tag/v${version}";
     license = with licenses; [
       mit
-      /*
-      or
-      */
+      # or
       asl20
     ];
-    maintainers = with maintainers; [figsoda];
+    maintainers = with maintainers; [ figsoda ];
   };
 }

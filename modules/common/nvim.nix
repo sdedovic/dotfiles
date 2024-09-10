@@ -3,8 +3,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -13,6 +12,7 @@
       ripgrep
       jq
       python3
+      yamlfmt
     ];
     plugins = with pkgs.vimPlugins; [
       # lsp
@@ -131,11 +131,13 @@
         config = ''
           local null_ls = require('null-ls')
           null_ls.setup({
+            debug = true,
             on_attach = lsp_on_attach,
             sources = {
               null_ls.builtins.formatting.jq,
               null_ls.builtins.formatting.terraform_fmt,
               null_ls.builtins.formatting.alejandra,
+              null_ls.builtins.formatting.yamlfmt,
             }
           })
         '';
@@ -211,6 +213,13 @@
             vim.o.softtabstop = 2
           end
         end
+      })
+
+      -- custom overrides
+      vim.filetype.add({
+        pattern = {
+          [".*/%.kube/config"] = "yaml",
+        },
       })
     '';
   };

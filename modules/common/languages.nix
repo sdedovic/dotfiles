@@ -5,8 +5,5 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    python312
-    # node.pkgs.pyright
-  ];
+  home.packages = with pkgs; [ python312 ];
 }

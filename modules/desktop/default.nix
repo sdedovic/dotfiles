@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ../common
 
@@ -8,5 +7,6 @@
     ./languages.nix
     ./media.nix
     ./nvim.nix
+    ./kubernetes.nix
   ];
 }

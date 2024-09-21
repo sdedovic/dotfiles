@@ -1,13 +1,13 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ../common
 
-    ./wtf
     ./alacritty.nix
+    ./kubernetes.nix
     ./languages.nix
     ./media.nix
     ./nvim.nix
-    ./kubernetes.nix
+    ./security.nix
+    ./wtf
   ];
 }

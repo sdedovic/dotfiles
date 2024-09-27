@@ -7,11 +7,15 @@
 flake-utils.lib.eachDefaultSystem (
   system:
   let
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [ self.overlays.default ];
+      config.allowUnfree = true;
+    };
   in
   {
-    packages.argc = pkgs.callPackage ./argc { };
-
-    packages.ci-tool = pkgs.callPackage ./ci-tool { };
+    packages.argc = pkgs.argc;
+    packages.ci-tool = pkgs.ci-tool;
+    packages.bws = pkgs.bws;
   }
 )

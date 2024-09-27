@@ -36,5 +36,6 @@
       ./overlays
       ./modules
       ./systems
+      ./pkgs
     ];
 }

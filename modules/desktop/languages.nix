@@ -46,4 +46,11 @@ lib.mkMerge [
       node.pkgs.typescript-language-server
     ];
   }
+
+  # Go
+  {
+    home.packages = with pkgs; [
+      go
+    ];
+  }
 ]

@@ -17,8 +17,6 @@ let
     less
     groff
     awscli2
-
-    docker-client
   ];
 in
 stdenv.mkDerivation rec {

@@ -10,6 +10,11 @@ docker_cli=$(which docker)
 # @cmd                              Utilities around Docker image creation and management
 docker() { :; }
 
+# @cmd                              Print debug info about what docker is used under the hood
+docker::info() {
+  ${docker_cli} --version
+}
+
 # @cmd 		                          Build and publish a Docker image
 # @env 		DOCKER_REGISTRY						Private Docker registry
 # @env 		DOCKER_REGISTRY_USERNAME	Private Docker registry username for authentication

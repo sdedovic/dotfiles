@@ -54,7 +54,7 @@
           }
           lspconfig.rust_analyzer.setup(setup_config)
           lspconfig.pyright.setup(setup_config)
-          lspconfig.tsserver.setup(setup_config)
+          lspconfig.ts_ls.setup(setup_config)
         '';
       }
 

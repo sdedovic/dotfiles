@@ -16,7 +16,7 @@ in
       settings = {
         window.opacity = 0.8;
         font = {
-          size = if cfg.highDPI then 16 else 12;
+          size = if cfg.highDPI then 17 else 12;
         };
       };
     in

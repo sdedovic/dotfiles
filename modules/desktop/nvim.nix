@@ -9,6 +9,9 @@
   programs.neovim = {
     extraPackages = with pkgs; [ terraform ];
     plugins = with pkgs.vimPlugins; [
+      mini-icons
+      nvim-web-devicons
+
       vim-javascript
       vim-jsx-pretty
       vim-fireplace

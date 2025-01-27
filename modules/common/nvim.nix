@@ -65,7 +65,7 @@
         config = "require('which-key').setup {}";
       }
 
-      # telescope and friends
+      # telescope
       plenary-nvim
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
@@ -75,49 +75,124 @@
         config = ''
           local telescope = require("telescope")
           local telescopeConfig = require("telescope.config")
+
           local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
           table.insert(vimgrep_arguments, "--hidden")
           table.insert(vimgrep_arguments, "--glob")
-          table.insert(vimgrep_arguments, "!**/.git/*")
-          table.insert(vimgrep_arguments, "--glob")
-          table.insert(vimgrep_arguments, "!**/package-lock.json")
+          table.insert(vimgrep_arguments, "!{.git/*,package-lock.json}")
+
           telescope.setup({
             defaults = {
               vimgrep_arguments = vimgrep_arguments,
             },
             pickers = {
               find_files = {
-                -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-                find_command = { "${pkgs.ripgrep}/bin/rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                hidden = true,
+                find_command = { 
+                  "${pkgs.ripgrep}/bin/rg", 
+                  "--files", 
+                  "--glob", 
+                  "!{.git/*}",
+                  "--path-separator",
+                  "/",
+                },
             	},
             },
             extensions = {
+              fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+                case_mode = "smart_case",
+              },
               ["ui-select"] = {
                 require("telescope.themes").get_cursor {}
-              }
+              },
             }
           })
           telescope.load_extension('ui-select')
-          vim.keymap.set('n', '<Leader>f', ':Telescope find_files<CR>')
-          vim.keymap.set('n', '<Leader>b', ':Telescope buffers<CR>')
-          vim.keymap.set('n', '<Leader>o', ':Telescope oldfiles<CR>')
-          vim.keymap.set('n', '<Leader>g', ':Telescope live_grep<CR>')
-          vim.keymap.set('n', 'z=', ':Telescope spell_suggest<CR>')
+
+          local builtin = require("telescope.builtin")
+          vim.keymap.set('n', '<Leader>f', builtin.find_files, { desc = "Telescope find files" })
+          vim.keymap.set('n', '<Leader>g', builtin.live_grep, { desc = "Telescope live grep" })
+          vim.keymap.set('n', '<Leader>d', builtin.diagnostics, { desc = "Telescope LSP diagnostics" })
+          vim.keymap.set('n', 'z=', builtin.spell_suggest, { desc = "Telescope spell suggest" })
+        '';
+      }
+
+      # navigation
+      {
+        plugin = harpoon2;
+        type = "lua";
+        config = ''
+          local harpoon = require("harpoon")
+          harpoon:setup()
+          vim.keymap.set("n", "<leader>a", function()
+            harpoon:list():add()
+          end)
+          vim.keymap.set("n", "<C-e>", function()
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+          end)
+        '';
+      }
+      {
+        plugin = flash-nvim;
+        type = "lua";
+        config = ''
+          vim.keymap.set({ "n", "x", "o"}, "zk",    function() require("flash").jump() end, { desc = "Flash" })
+          vim.keymap.set({ "n", "x", "o"}, "Zk",    function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+          vim.keymap.set("o",              "r",     function() require("flash").remote() end, { desc = "Remote Flash" })
+          vim.keymap.set({ "x", "o"},      "R",     function() require("flash").treesitter_search() end, { desc = "Treesitter search" })
+          vim.keymap.set({ "c"},           "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash" })
+        '';
+      }
+
+      # text editing / formatting
+      {
+        plugin = treesj;
+        type = "lua";
+        config = ''
+          require('treesj').setup({})
+        '';
+      }
+      {
+        plugin = nvim-autopairs;
+        type = "lua";
+        config = ''
+          require('nvim-autopairs').setup({})
+        '';
+      }
+      {
+        plugin = mini-surround;
+        type = "lua";
+        config = '' 
+          require('mini.surround').setup()
         '';
       }
 
       # theme
       {
-        plugin = papercolor-theme;
+        plugin = tokyonight-nvim; 
         type = "lua";
         config = ''
           vim.o.termguicolors = true
           vim.o.background = 'dark'
           vim.cmd [[
-            colorscheme PaperColor
+            colorscheme tokyonight
             hi! Normal ctermbg=NONE guibg=NONE
             hi! NonText ctermbg=NONE guibg=NONE
           ]]
+        '';
+      }
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = ''
+          require('lualine').setup({
+            options = {
+              theme = "tokyonight",
+            },
+          })
         '';
       }
 

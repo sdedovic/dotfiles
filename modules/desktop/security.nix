@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [trufflehog];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [ trufflehog ];
 }

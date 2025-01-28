@@ -123,14 +123,14 @@
       {
         plugin = mini-surround;
         type = "lua";
-        config = '' 
+        config = ''
           require('mini.surround').setup()
         '';
       }
 
       # theme
       {
-        plugin = tokyonight-nvim; 
+        plugin = tokyonight-nvim;
         type = "lua";
         config = ''
           vim.o.termguicolors = true
@@ -154,25 +154,7 @@
         '';
       }
 
-      # LSP-ish
-      {
-        plugin = none-ls-nvim;
-        type = "lua";
-        config = ''
-          local null_ls = require('null-ls')
-          null_ls.setup({
-            debug = true,
-            on_attach = lsp_on_attach,
-            sources = {
-              null_ls.builtins.formatting.jq,
-              null_ls.builtins.formatting.terraform_fmt,
-              null_ls.builtins.formatting.alejandra,
-              null_ls.builtins.formatting.yamlfmt,
-            }
-          })
-        '';
-      }
-
+      # zen mode
       {
         plugin = zen-mode-nvim;
         type = "lua";

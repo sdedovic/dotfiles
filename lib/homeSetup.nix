@@ -21,13 +21,16 @@ home-manager.lib.homeManagerConfiguration {
     config.allowUnfree = true;
   };
 
-  modules = [
-    {
-      home.stateVersion = "23.11";
-      home.username = username;
-      home.homeDirectory = homeDirectory;
-    }
-  ] ++ defaultModules ++ modules;
+  modules =
+    [
+      {
+        home.stateVersion = "23.11";
+        home.username = username;
+        home.homeDirectory = homeDirectory;
+      }
+    ]
+    ++ defaultModules
+    ++ modules;
 
   extraSpecialArgs = {
     inherit isNixOS;

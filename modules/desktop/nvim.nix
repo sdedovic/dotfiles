@@ -7,14 +7,17 @@
 {
   # terraform plus all these plugins makes neovim a little too heavy for my liking
   programs.neovim = {
-    extraPackages = with pkgs; [ terraform nil ];
+    extraPackages = with pkgs; [
+      terraform
+      nil
+    ];
     plugins = with pkgs.vimPlugins; [
       # ui / theme / icons
       mini-icons
       nvim-web-devicons
       {
-        plugin=fidget-nvim;
-        type="lua";
+        plugin = fidget-nvim;
+        type = "lua";
         config = ''
           require('fidget').setup({})
         '';
@@ -23,10 +26,24 @@
       # additional languages
       vim-javascript
       vim-jsx-pretty
-      vim-fireplace
       vim-nix
       vim-terraform
       vim-glsl
+
+      # clojure
+      vim-fireplace
+      cmp-conjure
+      vim-jack-in
+      vim-dispatch
+      vim-dispatch-neovim
+      {
+        plugin = conjure;
+        type = "lua";
+        config = ''
+          vim.g["conjure#filetypes"] = { "clojure" }
+          vim.g["conjure#mapping#enable_defaults"] = false
+        '';
+      }
 
       # treesitter
       nvim-treesitter.withAllGrammars
@@ -45,6 +62,28 @@
         '';
       }
 
+      # formatting
+      {
+        plugin = conform-nvim;
+        type = "lua";
+        config = ''
+          require("conform").setup({
+            lsp_format = "fallback",
+            formatters_by_ft = {
+              rust = { "rustfmt" },
+              nix = { "alejandra" },
+              go = { "gofmt" },
+              hcl = { "hcl" },
+              json = { "jq" },
+              tf = { "terraform_fmt" }
+            },
+            format_on_save = {
+              lsp_format = "fallback"
+            }
+          })
+        '';
+      }
+
       # lsp and autocomplete
       {
         plugin = nvim-lspconfig;
@@ -53,9 +92,6 @@
           local lspconfig = require('lspconfig')
           local lsp_on_attach = function(_, bufnr)
             local opts = { buffer = true, silent = true }
-
-            -- Format on save
-            vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=false})')
 
             -- Enable completion triggered by <c-x><c-o>
             vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -92,7 +128,7 @@
       }
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
-      { 
+      {
         plugin = nvim-cmp;
         type = "lua";
         config = ''
@@ -112,18 +148,22 @@
               ['<C-d>'] = cmp.mapping.scroll_docs(4),  -- Down
               ['<C-Space>'] = cmp.mapping.complete(),
               ['<C-e>'] = cmp.mapping.abort(),
-              ['<CR>'] = cmp.mapping.confirm({ 
+              ['<CR>'] = cmp.mapping.confirm({
                 -- idk what this does
                 -- behaviour = cmp.ConfirmBehavior.Replace,
 
-                -- Accept currently selected item. Set `select` to `false` 
+                -- Accept currently selected item. Set `select` to `false`
                 --  to only confirm explicitly selected items.
-                select = true, 
+                select = true,
               }),
+
+              -- see above
+              ['<Tab>'] = cmp.mapping.confirm({ select = true, }),
             }),
             sources = cmp.config.sources({
               { name = 'nvim_lsp' },
               { name = 'nvim_lsp_signature_help' },
+              { name = 'conjure' },
             }, {
               { name = 'buffer' },
             })

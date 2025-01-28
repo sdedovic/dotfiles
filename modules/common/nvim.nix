@@ -16,48 +16,6 @@
       yamlfmt
     ];
     plugins = with pkgs.vimPlugins; [
-      # lsp
-      {
-        plugin = nvim-lspconfig;
-        type = "lua";
-        config = ''
-          local lsp_on_attach = function(_, bufnr)
-            local opts = { buffer = true, silent = true }
-
-            -- Format on save
-            vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=false})')
-
-            -- Enable completion triggered by <c-x><c-o>
-            vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-            vim.keymap.set('n', 'gd', ':Telescope lsp_definitions theme=cursor<CR>', opts)
-            vim.keymap.set('n', '[d', ':lua vim.diagnostic.goto_prev()<CR>', opts)
-            vim.keymap.set('n', ']d', ':lua vim.diagnostic.goto_next()<CR>', opts)
-            vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-            vim.keymap.set('n', '<Leader>ln', ':lua vim.lsp.buf.rename()<CR>', opts)
-            vim.keymap.set('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', opts)
-            vim.keymap.set('n', '<Leader>li', ':lua vim.diagnostic.open_float()<CR>', opts)
-            vim.keymap.set('v', '<Leader>la', ':lua vim.lsp.buf.range_code_action()<CR>', opts)
-            vim.keymap.set('n', '<Leader>lr', ':Telescope lsp_references theme=cursor<CR>', opts)
-            vim.keymap.set('n', '<Leader>ls', ':Telescope lsp_workspace_symbols<CR>', opts)
-            vim.keymap.set('n', '<Leader>ld', ':Telescope diagnostics<CR>', opts)
-            vim.keymap.set('n', '<Leader>lt', ':Telescope lsp_type_definitions<CR>', opts)
-          end
-
-          local lspconfig = require('lspconfig')
-          local setup_config = {
-            on_attach = lsp_on_attach,
-            flags = {
-              -- This will be the default in neovim 0.7+
-              debounce_text_changes = 150,
-            }
-          }
-          lspconfig.rust_analyzer.setup(setup_config)
-          lspconfig.pyright.setup(setup_config)
-          lspconfig.ts_ls.setup(setup_config)
-        '';
-      }
-
       # misc
       {
         plugin = which-key-nvim;

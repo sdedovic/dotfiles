@@ -3,8 +3,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -45,11 +44,11 @@
             },
             pickers = {
               find_files = {
-                hidden = true,
-                find_command = { 
-                  "${pkgs.ripgrep}/bin/rg", 
-                  "--files", 
-                  "--glob", 
+                find_command = {
+                  "${pkgs.ripgrep}/bin/rg",
+                  "--files",
+                  "--hidden",
+                  "--glob",
                   "!{.git/*}",
                   "--path-separator",
                   "/",

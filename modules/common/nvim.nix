@@ -13,6 +13,7 @@
       jq
       python3
       yamlfmt
+      delta
     ];
     plugins = with pkgs.vimPlugins; [
       # misc
@@ -26,6 +27,7 @@
       plenary-nvim
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
+      telescope-undo-nvim
       {
         plugin = telescope-nvim;
         type = "lua";
@@ -56,6 +58,9 @@
             	},
             },
             extensions = {
+              undo = {
+                use_delta = true,
+              },
               fzf = {
                 fuzzy = true,
                 override_generic_sorter = true,
@@ -68,12 +73,14 @@
             }
           })
           telescope.load_extension('ui-select')
+          telescope.load_extension('undo')
 
           local builtin = require("telescope.builtin")
           vim.keymap.set('n', '<Leader>f', builtin.find_files, { desc = "Telescope find files" })
           vim.keymap.set('n', '<Leader>g', builtin.live_grep, { desc = "Telescope live grep" })
           vim.keymap.set('n', '<Leader>d', builtin.diagnostics, { desc = "Telescope LSP diagnostics" })
           vim.keymap.set('n', 'z=', builtin.spell_suggest, { desc = "Telescope spell suggest" })
+          vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
         '';
       }
 

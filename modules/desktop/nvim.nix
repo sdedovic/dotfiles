@@ -3,13 +3,13 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   # terraform plus all these plugins makes neovim a little too heavy for my liking
   programs.neovim = {
     extraPackages = with pkgs; [
       terraform
       nil
+      llvmPackagers_latest.clang-tools
     ];
     plugins = with pkgs.vimPlugins; [
       # ui / theme / icons
@@ -117,7 +117,7 @@
             { workspace = { didChangeWatchedFiles = { dynamicRegistration = true }}}
           )
 
-          local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls' }
+          local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls', 'clangd' }
           for _, lsp in ipairs(servers) do
             lspconfig[lsp].setup {
               on_attach = lsp_on_attach,

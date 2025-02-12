@@ -9,7 +9,7 @@
     extraPackages = with pkgs; [
       terraform
       nil
-      llvmPackagers_latest.clang-tools
+      clang-tools
     ];
     plugins = with pkgs.vimPlugins; [
       # ui / theme / icons

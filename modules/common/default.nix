@@ -29,9 +29,6 @@
       htop
       mdcat
 
-      # secrets management
-      bws
-
       # file system management
       ranger
       tree
@@ -44,6 +41,9 @@
 
       # my stuff
       ci-tool
+    ] ++ pkgs.lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
+      # secrets management
+      bws
     ];
   };
 }

@@ -15,9 +15,9 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-OvWXlb1LfUDLOAwAD/LAxoR8Wg8CAgWPXg6d76X/CJI=";
   };
 
-  cargoHash = "sha256-8NbVVSu2y8jgx6z8K4pjKidnRY74DQtYB6ueW7oIPx0=";
+  cargoHash = "sha256-e+tycT7r105XO3wnqOjvex/bb7lRspKq4gYneWecELs=";
 
-  nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [installShellFiles];
 
   postInstall = ''
     installShellCompletion --cmd argc \
@@ -27,7 +27,7 @@ rustPlatform.buildRustPackage rec {
   '';
 
   # TODO(2024-03-01): determine why this test is failing
-  checkFlags = [ "--skip=misc::escape" ];
+  checkFlags = ["--skip=misc::escape"];
 
   meta = with lib; {
     description = "A command-line options, arguments and sub-commands parser for bash";
@@ -38,6 +38,6 @@ rustPlatform.buildRustPackage rec {
       # or
       asl20
     ];
-    maintainers = with maintainers; [ figsoda ];
+    maintainers = with maintainers; [figsoda];
   };
 }

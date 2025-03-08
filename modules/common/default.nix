@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./direnv
     ./tmux
@@ -14,7 +13,7 @@
   config = {
     # TODO(2025-01-22): move to own file / dir
     programs.zellij = {
-      enable = true;
+      # enable = true;
 
       # not sure if still supported and
       #  this will add some zsh init stuff I dont want yet

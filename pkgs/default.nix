@@ -5,17 +5,16 @@
   ...
 }:
 flake-utils.lib.eachDefaultSystem (
-  system:
-  let
+  system: let
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [ self.overlays.default ];
+      overlays = [self.overlays.default];
       config.allowUnfree = true;
     };
-  in
-  {
+  in {
     packages.argc = pkgs.argc;
     packages.ci-tool = pkgs.ci-tool;
     packages.bws = pkgs.bws;
+    packages.tsx = pkgs.tsx;
   }
 )

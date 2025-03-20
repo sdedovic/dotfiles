@@ -1,0 +1,8 @@
+diff --git a/pnpm-workspace.yaml b/pnpm-workspace.yaml
+deleted file mode 100644
+index 28756fa..0000000
+--- a/pnpm-workspace.yaml
++++ /dev/null
+@@ -1,2 +0,0 @@
+-packages:
+-  - docs

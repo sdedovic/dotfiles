@@ -34,7 +34,16 @@ in {
       system = "aarch64-darwin";
       modules = [
         self.homeManagerModules.desktop
-        { home.devtools.highDPI = true; }
+        {home.devtools.highDPI = true;}
+      ];
+    };
+    stevan-mac-work = homeManagerSetup {
+      username = "stevan";
+      homeDirectory = "/Users/stevan";
+      system = "aarch64-darwin";
+      modules = [
+        self.homeManagerModules.work
+        {home.devtools.highDPI = true;}
       ];
     };
     stevan = homeManagerSetup {

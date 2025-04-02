@@ -4,53 +4,53 @@
   lib,
   isNixOS ? false,
   ...
-}:
-let
+}: let
   node = pkgs.nodejs_20;
 in
-lib.mkMerge [
-  # Clojure
-  {
-    home.packages = with pkgs; [
-      leiningen
-      temurin-bin-21
-    ];
+  lib.mkMerge [
+    # Clojure
+    {
+      home.packages = with pkgs; [
+        leiningen
+        temurin-bin-21
+      ];
 
-    home.file.".lein/profiles.clj".text = ''
-      {:user {:plugins [[cider/cider-nrepl "0.44.0"]]}}
-    '';
-  }
+      home.file.".lein/profiles.clj".text = ''
+        {:user {:plugins [[cider/cider-nrepl "0.44.0"]]}}
+      '';
+    }
 
-  # Julia
-  {
-    home.packages = with pkgs; [ (julia-bin.overrideAttrs (final: prev: { doInstallCheck = false; })) ];
-  }
+    # Julia
+    {
+      home.packages = with pkgs; [(julia-bin.overrideAttrs (final: prev: {doInstallCheck = false;}))];
+    }
 
-  # externally managed Rust
-  (lib.mkIf (!isNixOS) {
-    programs.zsh.envExtra = ''
-      . "$HOME/.cargo/env"
-    '';
-  })
+    # externally managed Rust
+    (lib.mkIf (!isNixOS) {
+      programs.zsh.envExtra = ''
+        . "$HOME/.cargo/env"
+      '';
+    })
 
-  {
-    programs.zsh.envExtra = ''
-      PATH=$PATH:$HOME/.cargo/bin/
-    '';
-  }
+    {
+      programs.zsh.envExtra = ''
+        PATH=$PATH:$HOME/.cargo/bin/
+      '';
+    }
 
-  # Javascript / Typescript
-  {
-    home.packages = with pkgs; [
-      node
-      node.pkgs.typescript-language-server
-    ];
-  }
+    # Javascript / Typescript
+    {
+      home.packages = with pkgs; [
+        node
+        node.pkgs.typescript-language-server
+        tsx
+      ];
+    }
 
-  # Go
-  {
-    home.packages = with pkgs; [
-      go
-    ];
-  }
-]
+    # Go
+    {
+      home.packages = with pkgs; [
+        go
+      ];
+    }
+  ]

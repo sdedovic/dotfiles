@@ -1,24 +1,22 @@
-inputs@{
+inputs @ {
   self,
   flake-utils,
   nixpkgs,
   home-manager,
   ...
-}:
-let
+}: let
   homeManagerSetup = import ../lib/homeSetup.nix {
     inherit nixpkgs home-manager;
-    defaultOverlays = [ self.overlays.customPackages ];
+    defaultOverlays = [self.overlays.customPackages];
   };
-in
-{
+in {
   homeConfigurations = {
     stevan-wsl = homeManagerSetup {
       username = "root";
       homeDirectory = "/root";
       modules = [
         self.homeManagerModules.desktop
-        { home.devtools.highDPI = true; }
+        {home.devtools.highDPI = true;}
       ];
     };
     stevan-mac = homeManagerSetup {
@@ -27,7 +25,7 @@ in
       system = "x86_64-darwin";
       modules = [
         self.homeManagerModules.desktop
-        { home.devtools.highDPI = true; }
+        {home.devtools.highDPI = true;}
       ];
     };
     stevan-mac-m3 = homeManagerSetup {
@@ -44,7 +42,7 @@ in
       isNixOS = true;
       modules = [
         self.homeManagerModules.desktop
-        { home.devtools.highDPI = true; }
+        {home.devtools.highDPI = true;}
       ];
     };
   };

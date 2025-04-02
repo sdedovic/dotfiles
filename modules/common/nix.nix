@@ -1,8 +1,13 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
+      trusted-users = ["stevan"];
       experimental-features = [
         "nix-command"
         "flakes"

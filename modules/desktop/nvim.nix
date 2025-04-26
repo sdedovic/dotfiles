@@ -11,6 +11,7 @@
       terraform-ls
       nil
       clang-tools
+      gopls
     ];
     plugins = with pkgs.vimPlugins; [
       # ui / theme / icons
@@ -118,7 +119,7 @@
             { workspace = { didChangeWatchedFiles = { dynamicRegistration = true }}}
           )
 
-          local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls', 'clangd', 'terraformls' }
+          local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls', 'clangd', 'terraformls', 'gopls' }
           for _, lsp in ipairs(servers) do
             lspconfig[lsp].setup {
               on_attach = lsp_on_attach,

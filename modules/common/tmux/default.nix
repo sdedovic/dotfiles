@@ -3,9 +3,8 @@
   config,
   lib,
   ...
-}:
-{
-  home.packages = with pkgs; [ tmux ];
+}: {
+  home.packages = with pkgs; [tmux];
 
   programs.zsh = {
     shellAliases = {
@@ -15,7 +14,7 @@
       ty = "tmux resize-pane -y";
     };
 
-    initExtra = ''
+    initContent = ''
       if [[ -n "$DISPLAY" && -z "$TMUX" ]];
       then
         exec tmux new-session;

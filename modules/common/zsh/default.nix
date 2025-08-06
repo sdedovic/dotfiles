@@ -21,7 +21,7 @@
       theme = "robbyrussell";
     };
     syntaxHighlighting.enable = true;
-    initExtra = let
+    initContent = let
       dl-mp4 = builtins.readFile ./dl-mp4.sh;
     in ''
       ${dl-mp4}

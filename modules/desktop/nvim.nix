@@ -12,6 +12,8 @@
       nil
       clang-tools
       gopls
+      lua-language-server
+      typescript-language-server
     ];
     plugins = with pkgs.vimPlugins; [
       # ui / theme / icons
@@ -119,7 +121,7 @@
             { workspace = { didChangeWatchedFiles = { dynamicRegistration = true }}}
           )
 
-          local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls', 'clangd', 'terraformls', 'gopls' }
+          local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls', 'clangd', 'terraformls', 'gopls', 'lua_ls' }
           for _, lsp in ipairs(servers) do
             lspconfig[lsp].setup {
               on_attach = lsp_on_attach,

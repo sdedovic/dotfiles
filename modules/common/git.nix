@@ -4,12 +4,10 @@
   lib,
   isNixOS ? false,
   ...
-}:
-let
+}: let
   cfg = config.home.devtools;
-  git = pkgs.git.override { withSsh = true; };
-in
-{
+  git = pkgs.git.override {withSsh = true;};
+in {
   options.home.devtools.git = with lib; {
     userName = lib.mkOption {
       default = "sdedovic";
@@ -31,20 +29,20 @@ in
     ];
 
     programs.git = {
-      inherit (cfg.git) userName userEmail;
       enable = true;
       package = git;
 
-      extraConfig.credential.helper = "cache --timeout=3600 --socket=$HOME/.git-credential-cache";
-
       lfs.enable = true;
-      difftastic.enable = true;
 
-      aliases =
-        let
+      settings = {
+        user.name = cfg.git.userName;
+        user.email = cfg.git.userEmail;
+
+        credential.helper = "cache --timeout=3600 --socket=$HOME/.git-credential-cache";
+
+        aliases = let
           fzf = config.programs.fzf.package;
-        in
-        {
+        in {
           # shows a list of modified/new files in fzf, selection will git-add
           fza = "!${git}/bin/git ls-files -m -o --exclude-standard | ${fzf}/bin/fzf -m --print0 | xargs -0 git add";
 
@@ -54,8 +52,12 @@ in
           # print out the root of the repo, may be used 'cd $(git root)'
           root = "rev-parse --show-toplevel";
         };
+      };
     };
-
-    programs.zsh.oh-my-zsh.plugins = [ "git" ];
+    programs.difftastic = {
+      enable = true;
+      git.enable = true;
+    };
+    programs.zsh.oh-my-zsh.plugins = ["git"];
   };
 }

@@ -43,7 +43,10 @@ in {
       system = "aarch64-darwin";
       modules = [
         self.homeManagerModules.work
-        {home.devtools.highDPI = true;}
+        {
+          home.devtools.highDPI = true;
+          home.devtools.git.userEmail = "stevan@rectanglehq.com";
+        }
       ];
     };
     stevan = homeManagerSetup {

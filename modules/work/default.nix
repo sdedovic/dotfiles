@@ -3,5 +3,28 @@
     ../desktop
   ];
 
-  home.packages = with pkgs; [kaf go-migrate terraform supabase-cli yamlfmt tailscale circleci-cli awscli2 aws-sam-cli steampipe graphviz];
+  home.packages = with pkgs; [
+    # kafka
+    kaf
+
+    # postgres
+    (go-migrate.overrideAttrs (oldAttrs: {
+      # only need pg support smaller bin this way
+      tags = ["postgres"];
+    }))
+
+    # infra
+    terraform
+    supabase-cli
+    tailscale
+    circleci-cli
+    awscli2
+    aws-sam-cli
+    steampipe
+
+    # misc
+    yamlfmt
+    graphviz
+    uutils-coreutils
+  ];
 }

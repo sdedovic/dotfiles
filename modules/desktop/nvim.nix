@@ -93,7 +93,6 @@
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          local lspconfig = require('lspconfig')
           local lsp_on_attach = function(_, bufnr)
             local opts = { buffer = true, silent = true }
 
@@ -123,10 +122,11 @@
 
           local servers = { 'rust_analyzer', 'pyright', 'ts_ls', 'nil_ls', 'clangd', 'terraformls', 'gopls', 'lua_ls' }
           for _, lsp in ipairs(servers) do
-            lspconfig[lsp].setup {
+            vim.lsp.config(lsp, {
               on_attach = lsp_on_attach,
               capabilities = capabilities
-            }
+            })
+            vim.lsp.enable(lsp)
           end
         '';
       }

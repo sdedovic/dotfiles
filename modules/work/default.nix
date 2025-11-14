@@ -13,7 +13,10 @@
       tags = ["postgres"];
     }))
 
+    temporal
+
     # infra
+    doctl
     terraform
     supabase-cli
     tailscale
@@ -25,6 +28,7 @@
     # misc
     yamlfmt
     graphviz
+    ttyplot
     uutils-coreutils
   ];
 }

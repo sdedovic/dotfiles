@@ -9,5 +9,8 @@
 
     # irc
     senpai
+
+    # misc
+    restic
   ];
 }

@@ -6,5 +6,8 @@
 
     # usb etcher / imager
     caligula
+
+    # irc
+    senpai
   ];
 }

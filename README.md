@@ -46,3 +46,16 @@ Prefered installation is to use `direnv`, which will set up the default `devShel
 Alternatively, manually run `nix develop` to setup and install `home-manager`.
 
 Alternatively, follow the `home-manager` installation guide.
+
+### Common Issues
+#### MacOS Upgrade Breaking
+See [this github issue](https://github.com/NixOS/nix/issues/3616#issue-623807793):
+Copying the following hook (copied from /etc/bashrc) to /etc/zshrc and restarting the shell fixed everything again:
+```bash
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+```
+

@@ -40,7 +40,7 @@ in {
 
         credential.helper = "cache --timeout=3600 --socket=$HOME/.git-credential-cache";
 
-        aliases = let
+        alias = let
           fzf = config.programs.fzf.package;
         in {
           # shows a list of modified/new files in fzf, selection will git-add

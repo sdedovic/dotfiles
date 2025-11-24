@@ -4,6 +4,9 @@
   ];
 
   home.packages = with pkgs; [
+    # redis
+    valkey
+
     # kafka
     kaf
 
@@ -30,5 +33,6 @@
     graphviz
     ttyplot
     uutils-coreutils
+    changie
   ];
 }

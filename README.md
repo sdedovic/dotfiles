@@ -32,8 +32,18 @@ This codebase uses [Home Manager](https://github.com/nix-community/home-manager)
 
 ## Using
 ### Standalone
-```
+```bash
 home-manager switch --flake .#[stevan-wsl|stevan-mac|stevan]
+```
+
+### First Time (Fresh Nix Install)
+```bash
+nix --extra-experimental-features 'nix-command flakes' develop
+home-manager --extra-experimental-features 'nix-command flakes' switch --flake .#stevan
+
+# set home-manager zsh to be user shell
+echo $(which zsh) | sudo tee -a /etc/shells
+csh -s $(which zsh) $USER
 ```
 
 #### Prerequisites

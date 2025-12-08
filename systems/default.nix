@@ -16,7 +16,16 @@ in {
       modules = [
         self.homeManagerModules.desktop
         {
-          home.devtools.highDPI = true;
+          imports = [../mixins/mpd.nix];
+          home = {
+            music.mpd = {
+              enable = true;
+              musicDirectory = "/mnt/z/Music";
+              audioOutput = "pulse";
+              wslBullshit = true;
+            };
+            devtools.highDPI = true;
+          };
           programs.zsh.sessionVariables = {
             WAYLAND_DISPLAY = "wayland-0";
             DISPLAY = ":0";

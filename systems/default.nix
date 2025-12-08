@@ -12,11 +12,16 @@ inputs @ {
 in {
   homeConfigurations = {
     stevan-wsl = homeManagerSetup {
-      username = "root";
-      homeDirectory = "/root";
+      username = "stevan";
       modules = [
         self.homeManagerModules.desktop
-        {home.devtools.highDPI = true;}
+        {
+          home.devtools.highDPI = true;
+          programs.zsh.sessionVariables = {
+            WAYLAND_DISPLAY = "wayland-0";
+            DISPLAY = ":0";
+          };
+        }
       ];
     };
     stevan-mac = homeManagerSetup {

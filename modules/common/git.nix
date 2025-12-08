@@ -37,6 +37,7 @@ in {
       settings = {
         user.name = cfg.git.userName;
         user.email = cfg.git.userEmail;
+        init.defaultBranch = "main";
 
         credential.helper = "cache --timeout=3600 --socket=$HOME/.git-credential-cache";
 

@@ -16,5 +16,6 @@ flake-utils.lib.eachDefaultSystem (
     packages.ci-tool = pkgs.ci-tool;
     packages.bws = pkgs.bws;
     packages.tsx = pkgs.tsx;
+    packages.python-kacl = pkgs.python-kacl;
   }
 )

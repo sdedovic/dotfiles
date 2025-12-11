@@ -17,6 +17,8 @@
     }))
 
     temporal
+    opentelemetry-collector
+    codex
 
     # infra
     doctl
@@ -25,7 +27,7 @@
     tailscale
     circleci-cli
     awscli2
-    aws-sam-cli
+    # aws-sam-cli
     steampipe
 
     # misc
@@ -33,6 +35,6 @@
     graphviz
     ttyplot
     uutils-coreutils
-    changie
+    python-kacl
   ];
 }

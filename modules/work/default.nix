@@ -9,6 +9,7 @@
 
     # kafka
     kaf
+    kcat
 
     # postgres
     (go-migrate.overrideAttrs (oldAttrs: {
@@ -29,6 +30,7 @@
     awscli2
     # aws-sam-cli
     steampipe
+    scorecard
 
     # misc
     yamlfmt

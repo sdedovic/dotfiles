@@ -28,7 +28,7 @@ in
     # externally managed Rust
     (lib.mkIf (!isNixOS) {
       programs.zsh.envExtra = ''
-        . "$HOME/.cargo/env"
+        [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
       '';
     })
 

@@ -20,6 +20,7 @@
     temporal
     opentelemetry-collector
     codex
+    opencode
 
     # infra
     doctl
@@ -38,5 +39,6 @@
     ttyplot
     uutils-coreutils
     python-kacl
+    yq-go
   ];
 }

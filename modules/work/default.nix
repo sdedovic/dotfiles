@@ -21,6 +21,7 @@
     opentelemetry-collector
     codex
     opencode
+    claude-code
 
     # infra
     doctl

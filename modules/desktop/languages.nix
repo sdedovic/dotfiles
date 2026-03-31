@@ -45,6 +45,10 @@ in
         node.pkgs.typescript-language-server
         tsx
       ];
+      home.file.".npmrc".text = ''
+        min-release-age=7 # days
+        ignore-scripts=true
+      '';
     }
 
     # Go

@@ -42,7 +42,7 @@ in
     {
       home.packages = with pkgs; [
         node
-        node.pkgs.typescript-language-server
+        typescript-language-server
         tsx
       ];
       home.file.".npmrc".text = ''

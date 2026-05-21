@@ -6,6 +6,10 @@
 }: {
   programs.neovim = {
     enable = true;
+
+    withRuby = false;
+    withPython3 = false;
+
     defaultEditor = true;
     extraPackages = with pkgs; [
       alejandra
@@ -195,7 +199,7 @@
       }
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- mappings
       vim.g.mapleader = ' '
       vim.keymap.set('n', '<Leader>e', ':Explore<CR>')

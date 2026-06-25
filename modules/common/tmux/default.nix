@@ -4,7 +4,6 @@
   lib,
   ...
 }: {
-  #home.packages = with pkgs; [tmux];
   programs.tmux = {
     enable = true;
 
@@ -17,25 +16,52 @@
     customPaneNavigationAndResize = true;
     reverseSplit = true;
 
-    extraConfig = let
-      configFile = builtins.readFile ./.tmux.conf;
-    in ''
-      ${configFile}
+    extraConfig = ''
+      bind : command-prompt
 
-      # home-manager install in XDG Config Home whereas I installed
-      #  ~/.tmux.conf. So this lets me reload from the new place.
+      # vim-like copy/paste
+      bind-key C-p run "@pasteCommand@ | tmux load-buffer - ; tmux paste-buffer"
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "@copyCommand@"
+      bind-key -T copy-mode-vi Enter send -X cancel
+
+      set -g set-titles on
+      set -g set-titles-string "#T"
+
+      # status bar
+      set -g status-bg black
+      set -g status-fg white
+      set -g status-left "#[fg=green]#H"
+
+      # highlight active window
+      set-window-option -g window-status-current-style bg=red
+
+      # urxvt tab-like window switching
+      bind -n S-down new-window
+      bind -n S-left prev
+      bind -n S-right next
+      bind -n C-left swap-window -t -1
+      bind -n C-right swap-window -t +1
+
+      # unbind things that I screw up often
+      unbind C-j
+      unbind C-z
+
       unbind r
       bind r source-file ${config.xdg.configHome}/tmux/tmux.conf
-
-      # continuum
-      set -g @continuum-restore 'on'
     '';
 
     plugins = with pkgs.tmuxPlugins; [
-      continuum
+      {
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-boot 'on'
+          set -g @continuum-boot-options 'alacritty'
+        '';
+      }
     ];
   };
-  #home.file.".tmux.conf".source = ./.tmux.conf;
 
   programs.zsh = {
     shellAliases = {

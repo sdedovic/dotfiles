@@ -7,6 +7,8 @@
   programs.tmux = {
     enable = true;
 
+    sensibleOnTop = true;
+
     shortcut = "C-a";
     terminal = "screen-256color";
     baseIndex = 1;
@@ -31,7 +33,7 @@
       # status bar
       set -g status-bg black
       set -g status-fg white
-      set -g status-left "#[fg=green]#H"
+      set -g status-right "#[fg=green]#H"
 
       # highlight active window
       set-window-option -g window-status-current-style bg=red
@@ -52,14 +54,18 @@
     '';
 
     plugins = with pkgs.tmuxPlugins; [
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-boot 'on'
-          set -g @continuum-boot-options 'alacritty'
-        '';
-      }
+      resurrect
+
+      # https://github.com/nix-community/home-manager/issues/9558
+      # https://github.com/nix-community/home-manager/issues/3555
+      # {
+      #   plugin = continuum;
+      #   extraConfig = ''
+      #     set -g @continuum-restore 'on'
+      #     set -g @continuum-boot 'on'
+      #     set -g @continuum-boot-options 'alacritty'
+      #   '';
+      # }
     ];
   };
 

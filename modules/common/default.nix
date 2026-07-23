@@ -21,28 +21,32 @@
       # enableZshIntegration = true;
     };
 
-    home.packages = with pkgs; [
-      # general system utilities
-      ripgrep
-      jq
-      htop
-      mdcat
+    home.packages = with pkgs;
+      [
+        # general system utilities
+        ripgrep
+        lstr
+        eza
+        jq
+        htop
+        mdcat
 
-      # file system management
-      ranger
-      tree
+        # file system management
+        ranger
+        tree
 
-      # archives
-      zip
-      unzip
-      p7zip
-      unrar
+        # archives
+        zip
+        unzip
+        p7zip
+        unrar
 
-      # my stuff
-      ci-tool
-    ] ++ pkgs.lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
-      # secrets management
-      bws
-    ];
+        # my stuff
+        ci-tool
+      ]
+      ++ pkgs.lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
+        # secrets management
+        bws
+      ];
   };
 }

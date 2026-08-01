@@ -8,6 +8,13 @@
   node = pkgs.nodejs_22;
 in
   lib.mkMerge [
+    # llms woooo
+    {
+      home.packages = with pkgs; [
+        claude-code
+      ];
+    }
+
     # Clojure
     {
       home.packages = with pkgs; [

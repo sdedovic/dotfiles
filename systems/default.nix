@@ -31,13 +31,6 @@ in {
               WAYLAND_DISPLAY = "wayland-0";
               DISPLAY = ":0";
             };
-            initContent = ''
-              # auto-mount Z: drive because wsl kinda sucks at this stuff
-              if ! mountpoint -q /mnt/z; then
-                sudo mkdir -p /mnt/z 2>/dev/null
-                sudo mount -t drvfs 'Z:' /mnt/z 2>/dev/null || true
-              fi
-            '';
           };
         }
       ];

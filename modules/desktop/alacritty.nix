@@ -11,7 +11,11 @@ in {
 
   config = let
     settings = {
-      window.opacity = 0.8;
+      window = {
+        opacity = 0.8;
+        blur = true;
+        decorations = "buttonless";
+      };
       font = {
         size =
           if cfg.highDPI

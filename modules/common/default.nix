@@ -31,6 +31,9 @@
         htop
         mdcat
 
+        # builds
+        just
+
         # file system management
         ranger
         tree

@@ -26,6 +26,11 @@
     in ''
       ${dl-mp4}
 
+      ${lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
+        # macOS path_helper shadows nix-profile; re-prepend after /etc/zprofile
+        export PATH="$HOME/.nix-profile/bin:$PATH"
+      ''}
+
       # robbyrussell theme but overrides to add hostname
       PROMPT="%{$fg[red]%}[%m]%{$reset_color%}"
       PROMPT+="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) %{$fg[cyan]%}%c%{$reset_color%}"

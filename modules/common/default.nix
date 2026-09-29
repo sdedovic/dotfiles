@@ -50,6 +50,9 @@
       ++ pkgs.lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
         # secrets management
         bws
+      ]
+      ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+        openssl
       ];
   };
 }

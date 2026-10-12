@@ -9,7 +9,6 @@
 
     # kafka
     kaf
-    kcat
 
     # postgres
     (go-migrate.overrideAttrs (oldAttrs: {

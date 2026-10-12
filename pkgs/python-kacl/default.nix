@@ -5,14 +5,14 @@
 }:
 python3.pkgs.buildPythonApplication rec {
   pname = "python-kacl";
-  version = "0.6.7";
+  version = "0.7.7";
   pyproject = true;
 
   src = fetchFromGitLab {
     owner = "schmieder.matthias";
     repo = "python-kacl";
     rev = "v${version}";
-    hash = "sha256-kTLaZNDNuijIJY0NRP6R5fhbWVH9bW2wpyVng6saSAw=";
+    hash = "sha256-KwsjknnwyJHA0pQZI4R30YgyesCGIrZqe5cbM/4dnV8=";
   };
 
   nativeBuildInputs = with python3.pkgs; [
